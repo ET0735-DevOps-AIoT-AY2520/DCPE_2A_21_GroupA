@@ -1,0 +1,44 @@
+Requirements for the projects
+
+Customer Requirements:
+To encourage and increase the number of people reading and loaning books from the
+public libraries, an automated book loan and return system is proposed.
+
+The system allows users to select the books that they would like to borrow online via a
+website or mobile App and make a reservation
+- Use flutter to create mobile App with firebase?
+
+Users can also select which library branch they would like to collect the book from
+- Flutter Map?
+- Clone from MAD project
+
+Reservations for any books that are not collected by the user within 5 days are
+automatically cancelled
+- Run this on Rasberry pie
+
+Each book has a loan period of 18 days and can be renewed only once for an additional
+7 days
+-Can be done on the APP or on the Rasberry
+- Record the Borrow date in DB 
+
+Individual users are allowed to borrow a maximum of 10 books at any time
+- Do this on the Rasberry pi when trying to loan books
+
+Users can return the books by scanning the ISBN barcode.
+- Self explanatory
+
+There will be a fine of $0.15 per book for each day after the return date
+- Record the Borrow date in DB,
+- Check for extension when calculating fine
+
+Users must pay any outstanding fines at the machine using the RFID card reader before
+being allowed to collect their book reservations
+- Unclear requirement, RFID like bank card? Student Card? Library card?
+
+To collect their books from the automated system, users will first need to scan the
+barcode on their NRIC or SP Student Card
+- Use same barcode scanner as return books?
+
+After a valid user has been authenticated, the system will then dispense the books to the
+customer.
+- Need use motor to physically dispense or metophorically dispense as in infomation confirmed and added to DB
