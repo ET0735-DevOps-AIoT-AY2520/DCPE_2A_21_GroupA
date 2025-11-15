@@ -37,7 +37,7 @@ being allowed to collect their book reservations
 
 To collect their books from the automated system, users will first need to scan the
 barcode on their NRIC or SP Student Card
-- Use same barcode scanner as return books?
+- Use camera module with pycam
 
 After a valid user has been authenticated, the system will then dispense the books to the
 customer.
