@@ -3,6 +3,7 @@ from threading import Thread
 import queue
 
 import db as db
+import picam as picam
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -50,10 +51,9 @@ def main():
     # Start the keypad scanning which will run forever in an infinite while(True) loop in a new Thread "keypad_thread"
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
-    caminput="0"
+    picam.runcam()
     while True:
         db.getallbooks()
-        db.getallprofile()
         time.sleep(1)
 
 
