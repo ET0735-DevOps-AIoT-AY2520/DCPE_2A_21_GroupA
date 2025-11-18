@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# Load service account key file
+# Load your service account key file
 cred = credentials.Certificate("/home/pi/ET0735/DCPE_2A_21_GroupA/serviceAccoutKey.json")
 firebase_admin.initialize_app(cred)
 
@@ -14,13 +14,42 @@ print("Reading all documents from 'books' collection...")
 def getallbooks():
     global books
     books = list(db.collection("books").stream())
-    #TESTING
+
     # Loop through documents
-    
+    '''
     for doc in books:
         print(f"\nDocument ID: {doc.id}")
         data = doc.to_dict()
         print("Data:", data["id"])
-    
+    '''
 
-    
+def getallprofile():
+    global profiles
+    profiles = list(db.collection("profile").stream())
+
+    # Loop through documents
+    '''
+    for profile in profiles:
+        print(f"\nDocument ID: {profile.id}")
+        data = profile.to_dict()
+        print("Data:", data["adm"])
+    '''
+
+def matchprofile(input):
+    global profiles
+    global books
+    for profile in profiles:
+        if profile.to_dict()["adm"]==str(input):
+            print(profile.to_dict()["adm"])
+            find_reserved_books(input)
+            
+
+def find_reserved_books(input):
+    global books
+    result=[]
+    for book in books:
+        a=book.to_dict()
+        if a["loanadm"]==str(input) and a["reserved"]==True:
+            print(a["title"])
+            print(a["location"])
+            result.append(a)

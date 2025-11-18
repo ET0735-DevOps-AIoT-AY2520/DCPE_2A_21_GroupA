@@ -3,6 +3,7 @@ from threading import Thread
 import queue
 
 import db as db
+import picam as picam
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -33,6 +34,8 @@ def key_pressed(key):
 
 
 
+
+
 def main():
     global currentkey
     currentkey="z"
@@ -44,6 +47,7 @@ def main():
     # Display something on LCD
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
+    picam.start_scanner()
     # Initialize the HAL keypad driver
     keypad.init(key_pressed)
 
@@ -52,8 +56,14 @@ def main():
     keypad_thread.start()
     caminput="0"
     while True:
-        db.getallbooks()
-        db.getallprofile()
+        caminput=picam.barcode_queue.get()
+        if caminput != "0": 
+            db.getallbooks()
+            db.getallprofile()
+            db.matchprofile(caminput)
+
+            while not picam.barcode_queue.empty():
+                picam.barcode_queue.get_nowait()
         time.sleep(1)
 
 
