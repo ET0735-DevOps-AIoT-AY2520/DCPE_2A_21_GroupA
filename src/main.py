@@ -34,6 +34,8 @@ def key_pressed(key):
 
 
 
+
+
 def main():
     global currentkey
     currentkey="z"
@@ -57,10 +59,14 @@ def main():
         caminput=picam.barcode_queue.get()
         if caminput != "0": 
             db.getallbooks()
-            print(caminput)
+            db.getallprofile()
+            db.matchprofile(caminput)
+
             while not picam.barcode_queue.empty():
                 picam.barcode_queue.get_nowait()
         time.sleep(1)
+
+
 
 
 
