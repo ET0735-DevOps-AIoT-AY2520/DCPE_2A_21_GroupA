@@ -45,18 +45,22 @@ def main():
     # Display something on LCD
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
+    picam.start_scanner()
     # Initialize the HAL keypad driver
     keypad.init(key_pressed)
 
     # Start the keypad scanning which will run forever in an infinite while(True) loop in a new Thread "keypad_thread"
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
-    picam.runcam()
+    caminput="0"
     while True:
-        db.getallbooks()
+        caminput=picam.barcode_queue.get()
+        if caminput != "0": 
+            db.getallbooks()
+            print(caminput)
+            while not picam.barcode_queue.empty():
+                picam.barcode_queue.get_nowait()
         time.sleep(1)
-
-
 
 
 
