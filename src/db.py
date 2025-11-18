@@ -14,7 +14,7 @@ print("Reading all documents from 'books' collection...")
 def getallbooks():
     global books
     books = list(db.collection("books").stream())
-
+    #TESTING
     # Loop through documents
     
     for doc in books:
