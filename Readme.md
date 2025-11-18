@@ -5,7 +5,7 @@ consists of a frontend Application and a Raspberry pi to act as a physical kiosk
 To connect the 2 platforms we use firebase to store data about each person's profile
 and each book's data
 
-![Icon]([https://i.ibb.co/3YfCHr9L/IMG20230726161811.jpg](https://i.ibb.co/3YfCHr9L/IMG20230726161811.jpg))
+![Icon](https://i.postimg.cc/3wT6TRd5/20250207-192745.jpg)
 
 # **Features List**
 
