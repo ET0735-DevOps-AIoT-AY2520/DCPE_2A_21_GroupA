@@ -58,14 +58,19 @@ def main():
     while True:
         caminput=picam.barcode_queue.get()
         if caminput != "0": 
-            db.getallbooks()
-            db.getallprofile()
-            db.matchprofile(caminput)
-
+            gotmatch(caminput)
             while not picam.barcode_queue.empty():
                 picam.barcode_queue.get_nowait()
         time.sleep(1)
 
+
+def gotmatch(caminput):
+    db.getallbooks()
+    db.getallprofile()
+    global profileadm
+    profileadm=db.matchprofile()
+    print(profileadm)
+        
 
 
 
