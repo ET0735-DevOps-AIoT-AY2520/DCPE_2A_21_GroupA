@@ -68,7 +68,7 @@ def gotmatch(caminput):
     db.getallbooks()
     db.getallprofile()
     global profileadm
-    profileadm=db.matchprofile()
+    profileadm=db.matchprofile(caminput)
     print(profileadm)
         
 
