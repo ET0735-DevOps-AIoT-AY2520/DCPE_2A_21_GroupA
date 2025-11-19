@@ -57,3 +57,12 @@ def find_reserved_books(input):
             print(a["title"])
             print(a["location"])
             result.append(a)
+    return result
+
+
+def checkfines(input):
+    for profile in profiles:
+        a=profile.to_dict()
+        if a["adm"]==input:
+            return float(a["fine"])
+    return 0

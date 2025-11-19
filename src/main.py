@@ -95,13 +95,13 @@ def collectbooks():
     global profileadm
     gotfine = 0
     print("going in check fine")
-    gotfine = 1 #add func here
+    gotfine = db.checkfines(profileadm) #add func here
     print(gotfine)
     print(type(gotfine))
     if gotfine!=0:
         lcd.lcd_clear()
         lcd.lcd_display_string("Pls Tap Card to",1)
-        lcd.lcd_display_string("pay $"+str(gotfine),2)
+        lcd.lcd_display_string("pay $"+gotfine,2)
         while True:
             time.sleep(10)
             break
