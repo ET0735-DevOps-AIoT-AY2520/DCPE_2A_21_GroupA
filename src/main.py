@@ -70,6 +70,19 @@ def gotmatch(caminput):
     global profileadm
     profileadm=db.matchprofile(caminput)
     print(profileadm)
+    if profileadm!="":
+        while True:
+            if currentkey== 1:
+                print("collect books")
+                #collectbooks()
+                break
+            elif currentkey ==2:
+                print("return books")
+                #returnbooks()
+                break
+    else:
+        print("No match")
+        
         
 
 
