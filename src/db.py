@@ -35,14 +35,18 @@ def getallprofile():
         print("Data:", data["adm"])
     '''
 
+            
 def matchprofile(input):
     global profiles
     global books
     for profile in profiles:
+        
         if profile.to_dict()["adm"]==str(input):
             print(profile.to_dict()["adm"])
-            find_reserved_books(input)
-            
+            return str(profile.to_dict()["adm"])
+           
+    return ""
+
 
 def find_reserved_books(input):
     global books
@@ -53,3 +57,12 @@ def find_reserved_books(input):
             print(a["title"])
             print(a["location"])
             result.append(a)
+    return result
+
+
+def checkfines(input):
+    for profile in profiles:
+        a=profile.to_dict()
+        if a["adm"]==input:
+            return float(a["fine"])
+    return 0

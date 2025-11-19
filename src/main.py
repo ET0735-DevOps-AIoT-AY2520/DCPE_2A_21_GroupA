@@ -58,18 +58,57 @@ def main():
     while True:
         caminput=picam.barcode_queue.get()
         if caminput != "0": 
-            db.getallbooks()
-            db.getallprofile()
-            db.matchprofile(caminput)
-
+            gotmatch(caminput)
             while not picam.barcode_queue.empty():
                 picam.barcode_queue.get_nowait()
         time.sleep(1)
 
 
+def gotmatch(caminput):
+    lcd=LCD.lcd()
+    db.getallbooks()
+    db.getallprofile()
+    global profileadm
+    profileadm=db.matchprofile(caminput)
+    print(profileadm)
+    if profileadm!="":
+        lcd.lcd_clear()
+        lcd.lcd_display_string("1-Collect Books",1)
+        lcd.lcd_display_string("2-Return Books",2)
+        while True:
+            if currentkey== 1:
+                print("collect books")
+                collectbooks()
+                break
+            elif currentkey ==2:
+                print("return books")
+                returnbooks()
+                break
+    else:
+        lcd.lcd_clear()
+        lcd.lcd_display_string("No Account",1)
+        lcd.lcd_display_string("Found",2)
+        time.sleep(1)
+        
+def collectbooks():
+    lcd=LCD.lcd()
+    global profileadm
+    gotfine = 0
+    print("going in check fine")
+    gotfine = db.checkfines(profileadm) #add func here
+    print(gotfine)
+    print(type(gotfine))
+    if gotfine!=0:
+        lcd.lcd_clear()
+        lcd.lcd_display_string("Pls Tap Card to",1)
+        lcd.lcd_display_string("pay $"+str(gotfine),2)
+        while True:
+            time.sleep(10)
+            break
+            #wait for RFID and deduct money here
 
-
-
+def returnbooks():
+    print("return books")
 
 if __name__ == '__main__':
     main()
