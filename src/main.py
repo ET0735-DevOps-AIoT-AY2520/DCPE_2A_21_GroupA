@@ -101,7 +101,7 @@ def collectbooks():
     if gotfine!=0:
         lcd.lcd_clear()
         lcd.lcd_display_string("Pls Tap Card to",1)
-        lcd.lcd_display_string("pay $"+gotfine,2)
+        lcd.lcd_display_string("pay $"+str(gotfine),2)
         while True:
             time.sleep(10)
             break
