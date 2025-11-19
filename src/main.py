@@ -78,11 +78,11 @@ def gotmatch(caminput):
         while True:
             if currentkey== 1:
                 print("collect books")
-                #collectbooks()
+                collectbooks()
                 break
             elif currentkey ==2:
                 print("return books")
-                #returnbooks()
+                returnbooks()
                 break
     else:
         lcd.lcd_clear()
@@ -90,7 +90,21 @@ def gotmatch(caminput):
         lcd.lcd_display_string("Found",2)
         time.sleep(1)
         
-        
+def collectbooks():
+    global profileadm
+    gotfine = 0
+    print("going in check fine")
+    gotfine = 1 #add func here
+    print(gotfine)
+    print(type(gotfine))
+    if gotfine!=0:
+        while True:
+            time.sleep(10)
+            break
+            #wait for RFID and deduct money here
+
+def returnbooks():
+    print("return books")
 
 if __name__ == '__main__':
     main()
