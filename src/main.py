@@ -65,12 +65,16 @@ def main():
 
 
 def gotmatch(caminput):
+    lcd=LCD.lcd()
     db.getallbooks()
     db.getallprofile()
     global profileadm
     profileadm=db.matchprofile(caminput)
     print(profileadm)
     if profileadm!="":
+        lcd.lcd_clear()
+        lcd.lcd_display_string("1-Collect Books",1)
+        lcd.lcd_display_string("2-Return Books",2)
         while True:
             if currentkey== 1:
                 print("collect books")
@@ -81,13 +85,12 @@ def gotmatch(caminput):
                 #returnbooks()
                 break
     else:
-        print("No match")
+        lcd.lcd_clear()
+        lcd.lcd_display_string("No Account",1)
+        lcd.lcd_display_string("Found",2)
+        time.sleep(1)
         
         
-
-
-
-
 
 if __name__ == '__main__':
     main()
