@@ -91,6 +91,7 @@ def gotmatch(caminput):
         time.sleep(1)
         
 def collectbooks():
+    lcd=LCD.lcd()
     global profileadm
     gotfine = 0
     print("going in check fine")
@@ -98,6 +99,9 @@ def collectbooks():
     print(gotfine)
     print(type(gotfine))
     if gotfine!=0:
+        lcd.lcd_clear()
+        lcd.lcd_display_string("Pls Tap Card to",1)
+        lcd.lcd_display_string("pay $"+str(gotfine),2)
         while True:
             time.sleep(10)
             break
