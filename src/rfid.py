@@ -5,9 +5,6 @@ def setup():
     global reader
     reader=rfid.init()
     
-   
-    
-
 def readmoney():
     global reader
     #from hal file temp is a tuple
@@ -25,4 +22,4 @@ def setmoney(input):
 
 
 
-# added setmoney function into RFID
+# intergrated with main collect book
