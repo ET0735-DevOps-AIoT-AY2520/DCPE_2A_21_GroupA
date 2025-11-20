@@ -22,4 +22,4 @@ def setmoney(input):
 
 
 
-# intergrated with main collect book
+# bugfix, init the reader before calling

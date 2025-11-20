@@ -41,7 +41,7 @@ def main():
     print("test")
     lcd = LCD.lcd()
     lcd.lcd_clear()
-
+    rfid.setup()
 
     # Display something on LCD
     lcd.lcd_display_string("Please Scan", 1)
