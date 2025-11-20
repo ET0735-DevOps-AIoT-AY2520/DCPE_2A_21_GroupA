@@ -106,9 +106,10 @@ def collectbooks():
         lcd.lcd_display_string("pay $"+str(gotfine),2)
         while True:
             balance=rfid.readmoney()
+            balance=float(balance)
             if balance<gotfine:
                 continue
-            rfid.setmoney(balance-gotfine)
+            rfid.setmoney(str(balance-gotfine))
             break
             #wait for RFID and deduct money here
 

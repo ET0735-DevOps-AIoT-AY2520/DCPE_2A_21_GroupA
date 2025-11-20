@@ -18,8 +18,9 @@ def readmoney():
 def setmoney(input):
     global reader
     reader.write(input)
+    readmoney()
 
 
 
 
-# bugfix, init the reader before calling
+# bugfix, change type to float when minus, change to str when set, readmoney to confirm after write
