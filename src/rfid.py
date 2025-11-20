@@ -5,8 +5,7 @@ def setup():
     global reader
     reader=rfid.init()
     
-    reader.write("12345")
-    #data is already in string
+   
     
 
 def readmoney():
@@ -19,9 +18,11 @@ def readmoney():
     print(balance)
     return balance
 
-def setmoney():
-    print("")
+def setmoney(input):
+    global reader
+    reader.write(input)
 
 
 
-# bugfix, removed unneccasry read code in setup and made reader in readmoney access global
+
+# added setmoney function into RFID
