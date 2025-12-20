@@ -112,6 +112,9 @@ def collectbooks():
             rfid.setmoney(str(balance-gotfine))
             rfid.readmoney()
             db.updatefine(profileadm,0)
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Fine Deducted!",1)
+            time.sleep(3)
             break
             #wait for RFID and deduct money here
 
