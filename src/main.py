@@ -110,6 +110,8 @@ def collectbooks():
             if balance<gotfine:
                 continue
             rfid.setmoney(str(balance-gotfine))
+            rfid.readmoney()
+            db.updatefine(profileadm,0)
             break
             #wait for RFID and deduct money here
 

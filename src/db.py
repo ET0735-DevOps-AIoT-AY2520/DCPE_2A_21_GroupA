@@ -35,7 +35,6 @@ def getallprofile():
         print("Data:", data["adm"])
     '''
 
-            
 def matchprofile(input):
     global profiles
     global books
@@ -45,8 +44,7 @@ def matchprofile(input):
             print(profile.to_dict()["adm"])
             return str(profile.to_dict()["adm"])
            
-    return ""
-
+    return ""                        
 
 def find_reserved_books(input):
     global books
@@ -57,8 +55,8 @@ def find_reserved_books(input):
             print(a["title"])
             print(a["location"])
             result.append(a)
+    
     return result
-
 
 def checkfines(input):
     for profile in profiles:
@@ -66,3 +64,12 @@ def checkfines(input):
         if a["adm"]==input:
             return float(a["fine"])
     return 0
+
+def updatefine(target,data):
+    global profiles
+    id=""
+    for profile in profiles:
+        if profile.to_dict()["adm"]==target:
+            id=profile.id
+    if id!="":
+        db.collection("profile").document(id).update({"fine":data})
