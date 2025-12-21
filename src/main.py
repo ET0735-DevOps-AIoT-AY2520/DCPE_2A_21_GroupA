@@ -5,6 +5,7 @@ import queue
 import db as db
 import picam as picam
 import rfid 
+import humidity as rh
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -115,8 +116,22 @@ def collectbooks():
             lcd.lcd_clear()
             lcd.lcd_display_string("Fine Deducted!",1)
             time.sleep(3)
+            
+
             break
-            #wait for RFID and deduct money here
+    rharr=rh.get_rh()
+    rhavg=rh.calcavg(rharr)
+    print(rhavg)
+    if rh.is_too_wet(rhavg,80):
+        print("too wet")
+    else:
+        print("not too wet")
+    # Motor func below
+    
+    # Update Firebase Below
+
+    # Return to main menu func
+        
 
     
 
@@ -127,3 +142,5 @@ def returnbooks():
 
 if __name__ == '__main__':
     main()
+
+#intergrated with the main file for collect books
