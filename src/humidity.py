@@ -10,7 +10,11 @@ def is_too_wet(rh,threshold):
 def get_rh():
     #humidity sensor is garbage, wait till valid read and return the 5 latest valid
     temp_humid_sensor.init()
-    return temp_humid_sensor.read_temp_humidity()
+    while True:
+        result=temp_humid_sensor.read_temp_humidity()
+        if result!= [-100,-100]:
+            return result
+        
 
 
 
@@ -23,4 +27,4 @@ def dht11_tester():
 
 dht11_tester()
 
-#added basic humidity read
+#added filtering of bad result
