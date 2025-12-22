@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import threading as thread
 import time
-
+import datetime
 # Load your service account key file
 cred = credentials.Certificate("/home/pi/ET0735/DCPE_2A_21_GroupA/serviceAccoutKey.json")
 firebase_admin.initialize_app(cred)
@@ -91,12 +91,16 @@ def reservationTimeout():
             reservedarr=find_reserved_books(item["adm"])
             if len(reservedarr)>0: #if this account has any reserved book
                 for book in reservedarr: #iterate thru all reserved books in this account
-                    print(book["date"])
+                    #find the year, month, day individually
+                    year=book["date"][0]+book["date"][1]+book["date"][2]+book["date"][3]
+                    month=book["date"][5]+book["date"][6]
+                    day=book["date"][8]+book["date"][9]
+                    print(datetime.datetime.now())
                 #find any books reserved
-
+            
         time.sleep(10*60)
-
+    
 
 reservationTimeout()
 
-#basic function to test reservation timeout, find all reserved book date
+#find the year, month and day individually and print current time
