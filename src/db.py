@@ -1,5 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+import threading as thread
+import time
 
 # Load your service account key file
 cred = credentials.Certificate("/home/pi/ET0735/DCPE_2A_21_GroupA/serviceAccoutKey.json")
@@ -73,3 +75,28 @@ def updatefine(target,data):
             id=profile.id
     if id!="":
         db.collection("profile").document(id).update({"fine":data})
+
+
+def reservationTimeout():
+    global books
+    global profiles
+    while True:
+        #force a database update
+        getallbooks()
+        getallprofile()
+        #iterate thru every profile
+        for item in profiles:
+            item=item.to_dict() #convert snapshot object to dict
+            reservedarr=[]
+            reservedarr=find_reserved_books(item["adm"])
+            if len(reservedarr)>0: #if this account has any reserved book
+                for book in reservedarr: #iterate thru all reserved books in this account
+                    print(book["date"])
+                #find any books reserved
+
+        time.sleep(10*60)
+
+
+reservationTimeout()
+
+#basic function to test reservation timeout, find all reserved book date
