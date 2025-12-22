@@ -12,6 +12,14 @@ db = firestore.client()
 
 print("Reading all documents from 'books' collection...")
 
+#location details:
+locationdict={
+    1:"Woodlands Regional",
+    2:"Sembawang Library",
+}
+
+setlocation = 1
+
 # Read all documents in the 'books' collection
 def getallbooks():
     global books
@@ -53,7 +61,8 @@ def find_reserved_books(input):
     result=[]
     for book in books:
         a=book.to_dict()
-        if a["loanadm"]==str(input) and a["reserved"]==True:
+        #return books reserved by this user specifically at this location
+        if a["loanadm"]==str(input) and a["reserved"]==True and a["location"]==locationdict[2]:
             result.append(a)
     
     return result
@@ -108,6 +117,5 @@ def remreserve(bookid):
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
 
-reservationTimeout()
 
-#Completed general function for auto reservation removal
+#Bug Fixed find reserved book function to include only this location
