@@ -91,16 +91,21 @@ def reservationTimeout():
             reservedarr=find_reserved_books(item["adm"])
             if len(reservedarr)>0: #if this account has any reserved book
                 for book in reservedarr: #iterate thru all reserved books in this account
-                    #find the year, month, day individually
-                    year=book["date"][0]+book["date"][1]+book["date"][2]+book["date"][3]
-                    month=book["date"][5]+book["date"][6]
-                    day=book["date"][8]+book["date"][9]
-                    print(datetime.datetime.now())
+                    # documentation for datetime import: https://docs.python.org/3/library/datetime.html
+                    reserved_date = datetime.datetime.strptime(book["date"], "%Y-%m-%d").date()
+                    cutoff_date = (datetime.datetime.now() - datetime.timedelta(days=5)).date()
+
+                    if reserved_date < cutoff_date:
+                        remreserve(book["id"])
+
                 #find any books reserved
             
         time.sleep(10*60)
     
-
+def remreserve(bookid):
+    global books
+    print("remove the reservation here")
+    print(bookid)
 reservationTimeout()
 
-#find the year, month and day individually and print current time
+#changed date comparison strat to use datetime and timedelta, call remreserve func to rem 5day old reservations
