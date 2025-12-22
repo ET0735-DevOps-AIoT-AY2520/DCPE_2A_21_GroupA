@@ -51,6 +51,9 @@ def main():
     # Initialize the HAL keypad driver
     keypad.init(key_pressed)
 
+
+    #db autoscan
+    dbscan= Thread(target=keypad.get_key)
     # Start the keypad scanning which will run forever in an infinite while(True) loop in a new Thread "keypad_thread"
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
@@ -140,6 +143,9 @@ def collectbooks():
     # Update Firebase Below
 
     # Return to main menu func
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Please Scan", 1)
+    lcd.lcd_display_string("Your Card", 2)
         
 
     
@@ -152,4 +158,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Moved LEd code to correct portion and added buzzer for too wet
+#Added Returning to Scan menu function
