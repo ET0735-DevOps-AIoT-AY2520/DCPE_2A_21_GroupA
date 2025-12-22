@@ -53,7 +53,8 @@ def main():
 
 
     #db autoscan
-    dbscan= Thread(target=keypad.get_key)
+    remres=Thread(target=db.reservationTimeout)
+    remres.start()
     # Start the keypad scanning which will run forever in an infinite while(True) loop in a new Thread "keypad_thread"
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
@@ -158,4 +159,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Added Returning to Scan menu function
+#Added thread start for auto reservation removal
