@@ -6,6 +6,7 @@ import db as db
 import picam as picam
 import rfid 
 import humidity as rh
+import servo_motor as sm
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -135,10 +136,7 @@ def collectbooks():
     else:
         print("not too wet")
     # Motor func below      
-    
-
-
-
+    sm.servo_motor_open_close()
     buzzer.init()
     buzzer.beep(1.5,1.5,1)
     # Update Firebase Below
