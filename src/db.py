@@ -54,8 +54,6 @@ def find_reserved_books(input):
     for book in books:
         a=book.to_dict()
         if a["loanadm"]==str(input) and a["reserved"]==True:
-            print(a["title"])
-            print(a["location"])
             result.append(a)
     
     return result
@@ -100,12 +98,16 @@ def reservationTimeout():
 
                 #find any books reserved
             
-        time.sleep(10*60)
+        time.sleep(1*60)
     
 def remreserve(bookid):
     global books
-    print("remove the reservation here")
-    print(bookid)
+    
+    for book in books:
+        if book.to_dict()["id"]==bookid:
+            print('removed:'+book.to_dict()["title"])
+            db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
+
 reservationTimeout()
 
-#changed date comparison strat to use datetime and timedelta, call remreserve func to rem 5day old reservations
+#Completed general function for auto reservation removal
