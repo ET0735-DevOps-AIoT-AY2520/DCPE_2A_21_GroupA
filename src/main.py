@@ -43,7 +43,7 @@ def main():
     lcd = LCD.lcd()
     lcd.lcd_clear()
     rfid.setup()
-
+    led.init()
     # Display something on LCD
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
@@ -60,7 +60,6 @@ def main():
         caminput=picam.barcode_queue.get()
         if caminput != "0": 
             gotmatch(caminput)
-            
             while not picam.barcode_queue.empty():
                 #removed anything after the first barcode scanned
                 picam.barcode_queue.get_nowait()
@@ -106,22 +105,27 @@ def collectbooks():
         lcd.lcd_display_string("Pls Tap Card to",1)
         lcd.lcd_display_string("pay $"+str(gotfine),2)
         while True:
+            #check if got sufficient balance
             balance=rfid.readmoney()
             balance=float(balance)
             if balance<gotfine:
                 continue
+            #set money from RFID
             rfid.setmoney(str(balance-gotfine))
             rfid.readmoney()
+            #Reset fine in firebase
             db.updatefine(profileadm,0)
             lcd.lcd_clear()
             lcd.lcd_display_string("Fine Deducted!",1)
             time.sleep(3)
-            
-
+            #blink LED
+            led.set_output(0,1)
+            time.sleep(1)
+            led.set_output(0,0)
             break
+    #if no fine proceed here
     rharr=rh.get_rh()
     rhavg=rh.calcavg(rharr)
-    print(rhavg)
     if rh.is_too_wet(rhavg,80):
         print("too wet")
     else:
@@ -143,4 +147,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#intergrated with the main file for collect books
+#Added basic LED intergration
