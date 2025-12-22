@@ -119,9 +119,11 @@ def collectbooks():
             lcd.lcd_display_string("Fine Deducted!",1)
             time.sleep(3)
             #blink LED
-            led.set_output(0,1)
-            time.sleep(1)
-            led.set_output(0,0)
+            for i in range(0,3):
+                led.set_output(0,1)
+                time.sleep(0.1)
+                led.set_output(0,0)
+                time.sleep(0.1)
             break
     #if no fine proceed here
     rharr=rh.get_rh()
@@ -130,8 +132,14 @@ def collectbooks():
         print("too wet")
     else:
         print("not too wet")
-    # Motor func below
+    # Motor func below      
     
+
+    for i in range(0,3):
+        led.set_output(0,1)
+        time.sleep(0.1)
+        led.set_output(0,0)
+        time.sleep(0.1)
     # Update Firebase Below
 
     # Return to main menu func
@@ -147,4 +155,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Added basic LED intergration
+#Expanded LED intergration and added quick blinking
