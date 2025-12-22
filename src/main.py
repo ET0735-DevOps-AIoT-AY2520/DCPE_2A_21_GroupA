@@ -118,28 +118,25 @@ def collectbooks():
             lcd.lcd_clear()
             lcd.lcd_display_string("Fine Deducted!",1)
             time.sleep(3)
-            #blink LED
-            for i in range(0,3):
-                led.set_output(0,1)
-                time.sleep(0.1)
-                led.set_output(0,0)
-                time.sleep(0.1)
             break
     #if no fine proceed here
     rharr=rh.get_rh()
     rhavg=rh.calcavg(rharr)
     if rh.is_too_wet(rhavg,80):
+        led.set_output(0,1)
+        buzzer.init()
+        buzzer.beep(0.125,0.125,12)
+        led.set_output(0,0)
         print("too wet")
     else:
         print("not too wet")
     # Motor func below      
     
 
-    for i in range(0,3):
-        led.set_output(0,1)
-        time.sleep(0.1)
-        led.set_output(0,0)
-        time.sleep(0.1)
+
+
+    buzzer.init()
+    buzzer.beep(1.5,1.5,1)
     # Update Firebase Below
 
     # Return to main menu func
@@ -155,4 +152,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Expanded LED intergration and added quick blinking
+#Moved LEd code to correct portion and added buzzer for too wet
