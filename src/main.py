@@ -163,20 +163,17 @@ def returnbooks():
             scanned.append(caminput)
             #check humidity
 
-
-
     #Check firebase for return date
     returnedbooks=db.checkreturndate(profileadm,scanned)
     ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
     
     #if return late add fine
     if ans !=0:
-        db.updatefine(profileadm,ans)
-    
-    #tag late fine amount
+        currentfine=db.checkprofile(profileadm)["fine"]
+        db.updatefine(profileadm,ans+currentfine)
 
     #reset book loan state
-
+    db.remloan(scanned)
     #show confirmation message
        
 
