@@ -9,6 +9,7 @@ import queue
 barcode_queue = queue.Queue()
 
 def scanner_loop():
+   
     # Initialize Picamera2 (Source [2])
     picam2 = Picamera2()
     config = picam2.create_video_configuration(main={"size": (1640, 1232)})
@@ -18,11 +19,11 @@ def scanner_loop():
     sleep(1)
     #pass the camera to function
 
-    #singleframe(picam2)
+    singleframe(picam2)
     while True:
         frame = picam2.capture_array()
         #https://docs.opencv.org/4.x/d8/d01/group__imgproc__color__conversions.html
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         barcodes = decode(gray)
 
         if len(barcodes) > 0:
@@ -36,6 +37,7 @@ def scanner_loop():
 
 
 def start_scanner():
+    
     #good practice to set daemon = true https://www.geeksforgeeks.org/python/python-daemon-threads/
     
     thread = Thread(target=scanner_loop, daemon=True)

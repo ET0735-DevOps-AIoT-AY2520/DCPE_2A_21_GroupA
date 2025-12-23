@@ -1,6 +1,7 @@
 import time
 from threading import Thread
 import queue
+import datetime
 
 import db as db
 import picam as picam
@@ -140,7 +141,7 @@ def collectbooks():
     buzzer.init()
     buzzer.beep(1.5,1.5,1)
     # Update Firebase Below
-
+    db.collectedloan(profileadm)
     # Return to main menu func
     lcd.lcd_clear()
     lcd.lcd_display_string("Please Scan", 1)
@@ -150,7 +151,34 @@ def collectbooks():
     
 
 def returnbooks():
-    print("returnbooks")
+    lcd=LCD.lcd()
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Scan Book",1)
+    lcd.lcd_display_string("0 to end",2)
+    scanned=[]
+    while currentkey!=0:
+        #if a barcode has been scanned
+        if not picam.barcode_queue.empty():
+            caminput=picam.barcode_queue.get()
+            scanned.append(caminput)
+            #check humidity
+
+
+
+    #Check firebase for return date
+    returnedbooks=db.checkreturndate(profileadm,scanned)
+    ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
+    
+    #if return late add fine
+    if ans !=0:
+        db.updatefine(profileadm,ans)
+    
+    #tag late fine amount
+
+    #reset book loan state
+
+    #show confirmation message
+       
 
 
 

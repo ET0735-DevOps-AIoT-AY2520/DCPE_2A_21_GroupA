@@ -62,7 +62,7 @@ def find_reserved_books(input):
     for book in books:
         a=book.to_dict()
         #return books reserved by this user specifically at this location
-        if a["loanadm"]==str(input) and a["reserved"]==True and a["location"]==locationdict[2]:
+        if a["loanadm"]==str(input) and a["reserved"]==True and a["location"]==locationdict[setlocation]:
             result.append(a)
     
     return result
@@ -82,6 +82,48 @@ def updatefine(target,data):
             id=profile.id
     if id!="":
         db.collection("profile").document(id).update({"fine":data})
+
+def collectedloan(adm):
+    getallbooks()
+    global books
+    global profiles
+    reserved=find_reserved_books(adm)
+    for i in range(0,len(reserved)):
+        for book in books:
+            if book.to_dict()["id"]==reserved[i]["id"]:
+                print("updated"+book.to_dict()["title"])
+                db.collection("books").document(book.id).update({
+                    "onloan":True,
+                    "reserved":False,
+                    "date":str(datetime.datetime.now().year)+"-"+str(datetime.datetime.now().month)+"-"+str(datetime.datetime.now().day)
+                })
+
+def checkreturndate(adm,returned):
+    global books
+    global profiles
+    getallbooks()
+    getallprofile()
+    result=[]
+    for i in range(0,len(returned)):
+        for book in books:
+            if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation] and book.to_dict()["id"]==returned[i]:
+                result.append(book.to_dict())
+    
+    return result
+
+def calculatefine(input,timenow):
+    totaldayslate=0
+    for book in input:
+        reserved_date = datetime.datetime.strptime(book["date"], "%Y-%m-%d").date()
+        if book["extended"]==True:
+            cutoff=(timenow - datetime.timedelta(days=21))
+        else:
+            cutoff=(timenow - datetime.timedelta(days=14))
+        if reserved_date<cutoff:
+            totaldayslate+=(cutoff-reserved_date).days
+    totalfine=totaldayslate*0.15
+    print(totalfine)
+    return totalfine
 
 
 def reservationTimeout():
@@ -118,4 +160,6 @@ def remreserve(bookid):
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
 
 
-#Bug Fixed find reserved book function to include only this location
+
+
+
