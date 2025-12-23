@@ -153,6 +153,9 @@ def returnbooks():
     lcd=LCD.lcd()
     lcd.lcd_clear()
     lcd.lcd_display_string("Scan Book",1)
+    lcd.lcd_display_string("0 to end",2)
+    while currentkey!=0:
+        print("Stuck")
 
 
 
