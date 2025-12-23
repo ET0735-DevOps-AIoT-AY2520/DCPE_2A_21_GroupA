@@ -98,6 +98,14 @@ def collectedloan(adm):
                     "date":str(datetime.datetime.now().year)+"-"+str(datetime.datetime.now().month)+"-"+str(datetime.datetime.now().day)
                 })
 
+def checkprofile(adm):
+    getallprofile()
+    global profiles
+    for profile in profiles:
+        a=profile.to_dict()
+        if a["adm"]==adm:
+            return a
+
 def checkreturndate(adm,returned):
     global books
     global profiles
@@ -108,7 +116,7 @@ def checkreturndate(adm,returned):
         for book in books:
             if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation] and book.to_dict()["id"]==returned[i]:
                 result.append(book.to_dict())
-    
+    print(result)
     return result
 
 def calculatefine(input,timenow):
