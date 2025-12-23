@@ -1,6 +1,7 @@
 import time
 from threading import Thread
 import queue
+import datetime
 
 import db as db
 import picam as picam
@@ -162,6 +163,8 @@ def returnbooks():
             #check humidity
 
             #Check firebase for return date
+            returnedbooks=db.checkreturndate(profileadm)
+            ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
             
             #if return late add fine
             
