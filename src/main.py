@@ -150,7 +150,9 @@ def collectbooks():
     
 
 def returnbooks():
-    print("returnbooks")
+    lcd=LCD.lcd()
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Scan Book",1)
 
 
 
