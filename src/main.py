@@ -162,17 +162,21 @@ def returnbooks():
             print(caminput)
             #check humidity
 
-            #Check firebase for return date
-            returnedbooks=db.checkreturndate(profileadm)
-            ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
-            
-            #if return late add fine
-            
-            #tag late fine amount
 
-            #reset book loan state
 
-            #show confirmation message
+    #Check firebase for return date
+    returnedbooks=db.checkreturndate(profileadm)
+    ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
+    
+    #if return late add fine
+    if ans !=0:
+        db.updatefine(profileadm,ans)
+    
+    #tag late fine amount
+
+    #reset book loan state
+
+    #show confirmation message
        
 
 
