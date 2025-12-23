@@ -140,7 +140,7 @@ def collectbooks():
     buzzer.init()
     buzzer.beep(1.5,1.5,1)
     # Update Firebase Below
-
+    db.collectedloan(profileadm)
     # Return to main menu func
     lcd.lcd_clear()
     lcd.lcd_display_string("Please Scan", 1)
