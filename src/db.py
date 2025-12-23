@@ -110,6 +110,19 @@ def checkreturndate(adm):
     
     return result
 
+def calculatefine(input,timenow):
+    totaldayslate=0
+    for book in input:
+        reserved_date = datetime.datetime.strptime(book["date"], "%Y-%m-%d").date()
+        if book["extended"]==True:
+            cutoff=(timenow - datetime.timedelta(days=21))
+        else:
+            cutoff=(timenow - datetime.timedelta(days=14))
+        if reserved_date<cutoff:
+            totaldayslate+=(cutoff-reserved_date).days
+    totalfine=totaldayslate*0.15
+    print(totalfine)
+    return totalfine
 
 
 def reservationTimeout():
@@ -145,5 +158,3 @@ def remreserve(bookid):
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
 
-
-checkreturndate("P2426082")
