@@ -155,7 +155,22 @@ def returnbooks():
     lcd.lcd_display_string("Scan Book",1)
     lcd.lcd_display_string("0 to end",2)
     while currentkey!=0:
-        print("Stuck")
+        #if a barcode has been scanned
+        if not picam.barcode_queue.empty():
+            caminput=picam.barcode_queue.get()
+            print(caminput)
+            #check humidity
+
+            #Check firebase for return date
+            
+            #if return late add fine
+            
+            #tag late fine amount
+
+            #reset book loan state
+
+            #show confirmation message
+       
 
 
 
