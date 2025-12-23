@@ -155,17 +155,18 @@ def returnbooks():
     lcd.lcd_clear()
     lcd.lcd_display_string("Scan Book",1)
     lcd.lcd_display_string("0 to end",2)
+    scanned=[]
     while currentkey!=0:
         #if a barcode has been scanned
         if not picam.barcode_queue.empty():
             caminput=picam.barcode_queue.get()
-            print(caminput)
+            scanned.append(caminput)
             #check humidity
 
 
 
     #Check firebase for return date
-    returnedbooks=db.checkreturndate(profileadm)
+    returnedbooks=db.checkreturndate(profileadm,scanned)
     ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
     
     #if return late add fine
