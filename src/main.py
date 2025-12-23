@@ -164,14 +164,15 @@ def returnbooks():
             #check humidity
 
 
-
+    print(scanned)
     #Check firebase for return date
     returnedbooks=db.checkreturndate(profileadm,scanned)
     ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
     
     #if return late add fine
     if ans !=0:
-        db.updatefine(profileadm,ans)
+        currentfine=db.checkprofile()["fine"]
+        db.updatefine(profileadm,ans+currentfine)
     
     #tag late fine amount
 
