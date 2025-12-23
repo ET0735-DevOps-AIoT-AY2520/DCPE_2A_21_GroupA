@@ -169,7 +169,7 @@ def returnbooks():
     
     #if return late add fine
     if ans !=0:
-        currentfine=db.checkprofile()["fine"]
+        currentfine=db.checkprofile(profileadm)["fine"]
         db.updatefine(profileadm,ans+currentfine)
 
     #reset book loan state

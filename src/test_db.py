@@ -1,4 +1,5 @@
 import db as db
+import datetime
 
 def test_matchprofiles():
     db.getallbooks()
@@ -21,3 +22,17 @@ def test_checkfines():
     fines=""
     fines=db.checkfines("P2426083")
     assert(fines==0)
+
+def test_calculatefine():
+    result=db.calculatefine(
+    [
+        {"extended":True,"date":"2025-12-10"},
+        {"extended":False,"date":"2025-12-07"},
+        {"extended":True,"date":"2025-11-30"},
+        {"extended":False,"date":"2025-12-20"},
+    ],
+        datetime.datetime.strptime("2025-12-23", "%Y-%m-%d").date()
+    )
+    assert(result==0.6)
+
+#2+2=4*0.15=0.6
