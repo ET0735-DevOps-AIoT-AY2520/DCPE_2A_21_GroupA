@@ -133,6 +133,20 @@ def calculatefine(input,timenow):
     print(totalfine)
     return totalfine
 
+def remloan(scanned):
+    getallbooks()
+    global books
+    for i in range(0,len(scanned)):
+        for book in books:
+            a=book.to_dict()
+            if a["id"]==scanned[i]:
+                db.collection("books").document(book.id).update({
+                    "date":"",
+                    "extended":False,
+                    "loanadm":"",
+                    "onloan":False,
+                    "reserved":False,})
+
 
 def reservationTimeout():
     global books
