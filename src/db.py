@@ -98,15 +98,16 @@ def collectedloan(adm):
                     "date":str(datetime.datetime.now().year)+"-"+str(datetime.datetime.now().month)+"-"+str(datetime.datetime.now().day)
                 })
 
-def checkreturndate(adm):
+def checkreturndate(adm,returned):
     global books
     global profiles
     getallbooks()
     getallprofile()
     result=[]
-    for book in books:
-        if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation]:
-            result.append(book.to_dict())
+    for i in range(0,len(returned)):
+        for book in books:
+            if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation] and book.to_dict()["id"]==returned[i]:
+                result.append(book.to_dict())
     
     return result
 
@@ -157,4 +158,8 @@ def remreserve(bookid):
         if book.to_dict()["id"]==bookid:
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
+
+
+
+
 
