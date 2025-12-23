@@ -105,7 +105,7 @@ def checkreturndate(adm):
     getallprofile()
     dates=[]
     for book in books:
-        if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm:
+        if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation]:
             dates.append(book.to_dict()["date"])
     print(dates)
     return dates
