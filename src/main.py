@@ -162,6 +162,16 @@ def returnbooks():
             caminput=picam.barcode_queue.get()
             scanned.append(caminput)
             #check humidity
+            rharr=rh.get_rh()
+            rhavg=rh.calcavg(rharr)
+            if rh.is_too_wet(rhavg,80):
+                led.set_output(0,1)
+                buzzer.init()
+                buzzer.beep(0.125,0.125,12)
+                led.set_output(0,0)
+                print("too wet")
+            else:
+                print("not too wet") 
 
     #Check firebase for return date
     returnedbooks=db.checkreturndate(profileadm,scanned)
