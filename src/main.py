@@ -159,20 +159,22 @@ def returnbooks():
     while currentkey!=0:
         #if a barcode has been scanned
         if not picam.barcode_queue.empty():
-            caminput=picam.barcode_queue.get()
-            scanned.append(caminput)
-            #check humidity
-            rharr=rh.get_rh()
-            rhavg=rh.calcavg(rharr)
-            if rh.is_too_wet(rhavg,80):
-                led.set_output(0,1)
-                buzzer.init()
-                buzzer.beep(0.125,0.125,12)
-                led.set_output(0,0)
-                print("too wet")
-            else:
-                print("not too wet") 
-
+                caminput=picam.barcode_queue.get()
+                scanned.append(caminput)
+                #check humidity
+                rharr=rh.get_rh()
+                rhavg=rh.calcavg(rharr)
+                if rh.is_too_wet(rhavg,80):
+                    led.set_output(0,1)
+                    buzzer.init()
+                    buzzer.beep(0.125,0.125,12)
+                    led.set_output(0,0)
+                    print("too wet")
+                else:
+                    print("not too wet") 
+    #LED and buzz
+    buzzer.init()
+    buzzer.beep(1.5,1.5,1)
     #Check firebase for return date
     returnedbooks=db.checkreturndate(profileadm,scanned)
     ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
@@ -192,4 +194,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Added thread start for auto reservation removal
+#Added return book buzzer REQ-22
