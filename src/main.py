@@ -185,11 +185,13 @@ def returnbooks():
     #reset book loan state
     db.remloan(scanned)
     #show confirmation message
-       
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Returned Books!",1)
+    time.sleep(3)
 
 
 
 if __name__ == '__main__':
     main()
 
-#Fixed positioning of LED and buzzer req-22/23
+#Added confirmation msg on lcd REQ-26
