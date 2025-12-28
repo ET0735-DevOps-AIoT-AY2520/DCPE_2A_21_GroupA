@@ -191,10 +191,13 @@ def returnbooks():
             lcd.lcd_clear()
             lcd.lcd_display_string("Scan Book",1)
             lcd.lcd_display_string("0 to end",2)
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Please Scan", 1)
+    lcd.lcd_display_string("Your Card", 2)
 
 
 
 if __name__ == '__main__':
     main()
 
-#Major BugFix: fixed indentation error, books are now returned one at a time as per srs. REQ24-28
+#Added return to main menu REQ-29
