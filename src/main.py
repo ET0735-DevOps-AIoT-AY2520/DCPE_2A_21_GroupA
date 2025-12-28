@@ -173,23 +173,31 @@ def returnbooks():
             else:
                 print("not too wet") 
 
-    #Check firebase for return date
-    returnedbooks=db.checkreturndate(profileadm,scanned)
-    ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
-    
-    #if return late add fine
-    if ans !=0:
-        currentfine=db.checkprofile(profileadm)["fine"]
-        db.updatefine(profileadm,ans+currentfine)
+            #Check firebase for return date
+            returnedbooks=db.checkreturndate(profileadm,scanned)
+            ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
+            
+            #if return late add fine
+            if ans !=0:
+                currentfine=db.checkprofile(profileadm)["fine"]
+                db.updatefine(profileadm,ans+currentfine)
 
-    #reset book loan state
-    db.remloan(scanned)
-    #show confirmation message
-       
+            #reset book loan state
+            db.remloan(scanned)
+            #show confirmation message
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Returned Books!",1)
+            time.sleep(1.5)
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Scan Book",1)
+            lcd.lcd_display_string("0 to end",2)
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Please Scan", 1)
+    lcd.lcd_display_string("Your Card", 2)
 
 
 
 if __name__ == '__main__':
     main()
 
-#Added thread start for auto reservation removal
+#Added return to main menu REQ-29
