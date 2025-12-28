@@ -159,39 +159,42 @@ def returnbooks():
     while currentkey!=0:
         #if a barcode has been scanned
         if not picam.barcode_queue.empty():
-                caminput=picam.barcode_queue.get()
-                scanned.append(caminput)
-                #check humidity
-                rharr=rh.get_rh()
-                rhavg=rh.calcavg(rharr)
-                if rh.is_too_wet(rhavg,80):
-                    led.set_output(0,1)
-                    buzzer.init()
-                    buzzer.beep(0.125,0.125,12)
-                    led.set_output(0,0)
-                    print("too wet")
-                else:
-                    print("not too wet") 
-    
-    #Check firebase for return date
-    returnedbooks=db.checkreturndate(profileadm,scanned)
-    ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
-    
-    #if return late add fine
-    if ans !=0:
-        currentfine=db.checkprofile(profileadm)["fine"]
-        db.updatefine(profileadm,ans+currentfine)
+            caminput=picam.barcode_queue.get()
+            scanned.append(caminput)
+            #check humidity
+            rharr=rh.get_rh()
+            rhavg=rh.calcavg(rharr)
+            if rh.is_too_wet(rhavg,80):
+                led.set_output(0,1)
+                buzzer.init()
+                buzzer.beep(0.125,0.125,12)
+                led.set_output(0,0)
+                print("too wet")
+            else:
+                print("not too wet") 
 
-    #reset book loan state
-    db.remloan(scanned)
-    #show confirmation message
-    lcd.lcd_clear()
-    lcd.lcd_display_string("Returned Books!",1)
-    time.sleep(3)
+            #Check firebase for return date
+            returnedbooks=db.checkreturndate(profileadm,scanned)
+            ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
+            
+            #if return late add fine
+            if ans !=0:
+                currentfine=db.checkprofile(profileadm)["fine"]
+                db.updatefine(profileadm,ans+currentfine)
+
+            #reset book loan state
+            db.remloan(scanned)
+            #show confirmation message
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Returned Books!",1)
+            time.sleep(1.5)
+            lcd.lcd_clear()
+            lcd.lcd_display_string("Scan Book",1)
+            lcd.lcd_display_string("0 to end",2)
 
 
 
 if __name__ == '__main__':
     main()
 
-#Added confirmation msg on lcd REQ-26
+#Major BugFix: fixed indentation error, books are now returned one at a time as per srs. REQ24-28
