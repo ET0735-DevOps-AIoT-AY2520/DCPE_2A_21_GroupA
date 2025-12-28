@@ -172,9 +172,7 @@ def returnbooks():
                     print("too wet")
                 else:
                     print("not too wet") 
-    #LED and buzz
-    buzzer.init()
-    buzzer.beep(1.5,1.5,1)
+    
     #Check firebase for return date
     returnedbooks=db.checkreturndate(profileadm,scanned)
     ans=db.calculatefine(returnedbooks,datetime.datetime.now().date())
@@ -194,4 +192,4 @@ def returnbooks():
 if __name__ == '__main__':
     main()
 
-#Added return book buzzer REQ-22
+#Fixed positioning of LED and buzzer req-22/23
