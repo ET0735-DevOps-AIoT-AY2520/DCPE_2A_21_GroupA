@@ -20,5 +20,4 @@ def newlog(type,msg):
         7:"ERROR",
     }
     logs.append("["+types[type]+"]["+str(now)+"]"+msg)
-    print(logs[0])
     

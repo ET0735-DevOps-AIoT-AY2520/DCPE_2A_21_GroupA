@@ -35,7 +35,7 @@ from hal import hal_accelerometer as accel
 def key_pressed(key):
     global currentkey
     currentkey=key
-    logs.newlog(4,"Keypad Pressed"+ currentkey)
+    logs.newlog(4,"Keypad Pressed"+ str(currentkey))
     time.sleep(1)
     currentkey="z"
     
