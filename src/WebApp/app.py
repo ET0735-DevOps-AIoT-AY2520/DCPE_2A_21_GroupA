@@ -23,4 +23,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added template for booksearch html and return js to index.html
+#Added go to logs and user search

@@ -5,10 +5,18 @@
             function gotobooksearch(){
                 window.location.href = "/booksearch"; 
             }
+            function gotousersearch(){
+                window.location.href="/usersearch";
+            }
+            function gotologs(){
+                window.location.href="/logs";
+            }
         </script>
     </head>
     <body>
         <p>This is the body of the first page</p>
-        <input type="button" onclick="gotobooksearch()" value="Go to booksearch"> 
+        <input type="button" onclick="gotobooksearch()" value="Go to booksearch"> <br>
+        <input type="button" onclick="gotousersearch()" value="Go to user search"> <br>
+        <input type="button" onclick="gotologs()" value="Go to logs"> 
     </body>
 </html>
