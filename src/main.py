@@ -8,6 +8,7 @@ import picam as picam
 import rfid 
 import humidity as rh
 import servo_motor as sm
+import logs 
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -52,7 +53,7 @@ def main():
     picam.start_scanner()
     # Initialize the HAL keypad driver
     keypad.init(key_pressed)
-
+    logs.logsinit()
 
     #db autoscan
     remres=Thread(target=db.reservationTimeout)
@@ -62,10 +63,11 @@ def main():
     keypad_thread.start()
     caminput="0"
     while True:
-        print("test")
         caminput=picam.barcode_queue.get()
         if caminput != "0": 
+            logs.newlog(4,"PiCam Scanned: "+caminput)
             gotmatch(caminput)
+            
             while not picam.barcode_queue.empty():
                 #removed anything after the first barcode scanned
                 picam.barcode_queue.get_nowait()
