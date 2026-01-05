@@ -9,20 +9,21 @@ app=Flask(__name__)
 def getdbdata():
     db.getallbooks()
     db.getallprofile()
+    location=db.locationdict[db.setlocation]
     books=[]
     profiles=[]
     for book in db.books:
         books.append(book.to_dict())
     for profile in db.profiles:
         profiles.append(profile.to_dict())
-    return [books,profiles]
+    return [books,profiles,location]
     
 
 
 @app.route('/')
 def index():
-    [books,profiles]=getdbdata()
-    return render_template("index.html",books=books,profiles=profiles)
+    [books,profiles,location]=getdbdata()
+    return render_template("index.html",books=books,profiles=profiles,location=location)
 
 @app.route('/booksearch')
 def booksearch():
@@ -41,4 +42,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added moving of data from python to html
+#Added display of total books on loan on html

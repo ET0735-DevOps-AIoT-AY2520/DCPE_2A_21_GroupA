@@ -5,6 +5,7 @@
             //https://flask.palletsprojects.com/en/stable/patterns/javascript/
             const book = {{ books | tojson }};
             const profile = {{ profiles | tojson }};
+            const loca = {{location | tojson | safe}}
             function gotobooksearch(){
                 window.location.href = "/booksearch"; 
             }
@@ -15,19 +16,36 @@
                 window.location.href="/logs";
             }
             function fetchdata(){
-                console.log(book)
-                console.log(profile)
+                let bookloan=0;
+                for(let i=0;i<book.length;i++)
+                {   
+                    console.log(loca);
+                    if(book[i].onloan==true&&book[i].location==loca){
+                        bookloan++;
+                        
+                    }
+                    console.log(bookloan);
+                }
+                loanbook=document.getElementsByClassName("loanbook")[0];
+                li=document.createElement("li");
+                li.textContent=bookloan;
+                loanbook.appendChild(li);
             }
             window.addEventListener("DOMContentLoaded", fetchdata);
         </script>
     </head>
     <body>
-        <ul >
+        <ul>
             <li>
-                <h1>Total books on loan</h1>
+                <ul class="loanbook">
+                    <li><h1>Total books on loan</h1></li>
+                </ul>
             </li>
             <li>
-                <h1>Total books Reserved</h1>
+                <ul class="resbook">
+                    <li><h1>Total books Reserved</h1></li>
+                </ul>
+                
             </li>
             <li>
                 <h1>Total books Available</h1>
