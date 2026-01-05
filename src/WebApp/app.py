@@ -44,4 +44,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#User search now lists the loaned books by the user
+#Bug Fix, added missing search button

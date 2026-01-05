@@ -12,10 +12,12 @@
                 let filtered=[];
                 let filteredbooks=[];
                 let text=document.getElementById("userid");
-                text=text.value.toLowerCase();
+                
+                search=text.value.toLowerCase();
+                
                 for(let i=0;i<profile.length;i++)
                 {
-                    if(profile[i].adm.toLowerCase().includes(text))
+                    if(profile[i].adm.toLowerCase().includes(search))
                         filtered.push(profile[i]);
                 }
                 for(let i=0;i<book.length;i++)
@@ -29,7 +31,9 @@
                     }
                 }
                 console.log(filteredbooks);
+                console.log(filtered);
                 ul=document.getElementsByClassName("userlist")[0];
+                ul.innerHTML="";
                 for(let j=0;j<filtered.length;j++)
                 {
                     li=document.createElement("li");
@@ -54,7 +58,7 @@
         </script>
     </head>
     <body>
-        User id: <input type="text" id="userid"><br>
+        User id: <input type="text" id="userid"><input type="button" value="Search" onclick="fetchdata()"><br>
         <ul class="userlist">
 
         </ul>
