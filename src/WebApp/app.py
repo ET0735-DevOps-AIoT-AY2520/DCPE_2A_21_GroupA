@@ -93,6 +93,8 @@ def getbookupdate():
     date= request.form.get("date")
     delflag = request.form.get("delete")
     #temporary confirmation of data downloading
+
+    db.updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag)
     print(id)
     print(date)
     print(title)

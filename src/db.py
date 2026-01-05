@@ -181,6 +181,15 @@ def remreserve(bookid):
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
 
+def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
+    getallbooks()
+    print(delflag)
+    print(type(delflag))
+    global books
+    for book in books:
+        if book.to_dict()['id']==id:
+            if delflag=="1":
+                db.collection("books").document(book.id).delete()
 
 
 

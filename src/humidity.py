@@ -34,4 +34,3 @@ def dht11_tester():
         print(calcavg(get_rh()))
         
 
-#added averaging of the humidity for better result

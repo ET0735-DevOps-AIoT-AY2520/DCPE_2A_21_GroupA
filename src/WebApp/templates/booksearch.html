@@ -24,6 +24,12 @@
                 {
                     let checkonloan=(String(book[i].onloan).toLowerCase()==searchonloan)
                     let checkreserved=(String(book[i].reserved).toLowerCase().trim()==String(searchreserved))
+                    if(searchonloan==""){
+                         checkonloan=true;
+                    }
+                    if(searchreserved==""){
+                        checkreserved=true;
+                    }
                     if(checkreserved||checkonloan){
                         checkonloan=true;
                         checkreserved=true;
