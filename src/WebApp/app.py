@@ -121,8 +121,21 @@ def getuserupdate():
 def logs():
     return render_template("logs.html")
 
+@app.route("/newbooks")
+def newbook():
+    return render_template("newbook.html")
+
+@app.route("/newbooks/upd", methods=["POST"])
+def getnewbooksdata():
+    id=request.form.get("bookid")
+    title=request.form.get("booktitle")
+    locationcode=request.form.get("locationcode")
+    print(id)
+    print(title)
+    print(locationcode)
+    return redirect('/')
 
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added delete button for books
+#Added creating books

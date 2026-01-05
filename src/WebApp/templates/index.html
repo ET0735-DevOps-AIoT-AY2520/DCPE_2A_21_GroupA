@@ -51,6 +51,10 @@
                 availli.textContent=availbookcount;
                 availbook.appendChild(availli);
             }
+            function gotonewbook(){
+                window.location.href="/newbooks";
+            }
+
             window.addEventListener("DOMContentLoaded", fetchdata);
         </script>
     </head>
@@ -75,6 +79,7 @@
         </ul>
         <input type="button" onclick="gotobooksearch()" value="Go to booksearch"> <br>
         <input type="button" onclick="gotousersearch()" value="Go to user search"> <br>
-        <input type="button" onclick="gotologs()" value="Go to logs"> 
+        <input type="button" onclick="gotologs()" value="Go to logs"><br>
+        <input type="button" onclick="gotonewbook()" value="Go to new books">
     </body>
 </html>
