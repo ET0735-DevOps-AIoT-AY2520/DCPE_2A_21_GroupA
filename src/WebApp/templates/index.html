@@ -5,7 +5,7 @@
             //https://flask.palletsprojects.com/en/stable/patterns/javascript/
             const book = {{ books | tojson }};
             const profile = {{ profiles | tojson }};
-            const loca = {{location | tojson | safe}}
+            const loca = {{location | tojson | safe}};
             function gotobooksearch(){
                 window.location.href = "/booksearch"; 
             }

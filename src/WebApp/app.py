@@ -27,7 +27,8 @@ def index():
 
 @app.route('/booksearch')
 def booksearch():
-    return render_template("booksearch.html")
+    [books,profiles,location]=getdbdata()
+    return render_template("booksearch.html",books=books,profiles=profiles,location=location)
 
 @app.route('/usersearch')
 def usersearch():
@@ -42,4 +43,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added display of total books reserved and available books req-56
+#Added filtering of books as per req-51
