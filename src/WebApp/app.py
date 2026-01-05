@@ -44,4 +44,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added list of adm and fine for each profile
+#User search now lists the loaned books by the user

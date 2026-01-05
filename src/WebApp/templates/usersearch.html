@@ -10,6 +10,7 @@
             }
             function fetchdata(){
                 let filtered=[];
+                let filteredbooks=[];
                 let text=document.getElementById("userid");
                 text=text.value.toLowerCase();
                 for(let i=0;i<profile.length;i++)
@@ -17,18 +18,35 @@
                     if(profile[i].adm.toLowerCase().includes(text))
                         filtered.push(profile[i]);
                 }
+                for(let i=0;i<book.length;i++)
+                {
+                    if(book[i].onloan==true||book[i].reserved==true){
+                        for(let j=0;j<filtered.length;j++){
+                            if(filtered[j].adm==book[i].loanadm){
+                                filteredbooks.push(book[i]);
+                            }
+                        }
+                    }
+                }
+                console.log(filteredbooks);
                 ul=document.getElementsByClassName("userlist")[0];
                 for(let j=0;j<filtered.length;j++)
                 {
                     li=document.createElement("li");
                     li.innerHTML=`
-                        <div>
+                        <div class="${filtered[j].adm}">
                             <h1>Adm: ${filtered[j].adm}</h1>
                             <p>Fine: ${filtered[j].fine}</p>
-                            <p>book1:</p>
+                            <h2>Books loaned</h2>
                         </div>
                     `
                     ul.appendChild(li);
+                }
+                for(let k=0;k<filteredbooks.length;k++){
+                    div=document.getElementsByClassName(filteredbooks[k].loanadm)[0];
+                    p=document.createElement("p");
+                    p.textContent=filteredbooks[k].title;
+                    div.appendChild(p);
                 }
             }
 
