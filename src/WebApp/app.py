@@ -17,10 +17,10 @@ def usersearch():
 
 @app.route('/logs')
 def logs():
-    return "This is logs"
+    return render_template("logs.html")
 
 
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added template for user search
+#Added template for logs
