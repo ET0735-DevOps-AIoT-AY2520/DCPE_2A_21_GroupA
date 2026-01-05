@@ -190,7 +190,32 @@ def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
         if book.to_dict()['id']==id:
             if delflag=="1":
                 db.collection("books").document(book.id).delete()
-
+            else:
+                print("updating book")
+                dbook=book.to_dict()
+                if date=="":
+                    date=dbook["date"]
+                if title=="":
+                    title=dbook["title"]
+                if location=="":
+                    location=dbook["location"]
+                if loanadm=="":
+                    loanadm=dbook["loanadm"]
+                if reserved=="true":
+                    reserved=True
+                else:
+                    reserved=False
+                if onloan=="true":
+                    onloan=True
+                else:
+                    onloan=False
+                db.collection("books").document(book.id).update({
+                    "date":date,
+                    "loanadm":loanadm,
+                    "onloan":onloan,
+                    "reserved":reserved,
+                    "title":title,
+                    "location":location,})
 
 
 
