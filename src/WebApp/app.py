@@ -3,7 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from flask import Flask
 from flask import render_template
-from flask import request
+from flask import request, redirect
 import db
 app=Flask(__name__)
 
@@ -74,7 +74,7 @@ def getbookupdate():
     print(loanadm)
     print(reserved)
     print(onloan)
-    return "getting data"
+    return redirect('/')
 
 @app.route('/logs')
 def logs():
@@ -84,4 +84,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added downloading of data from edit page to flask
+#Added redirect back to main page
