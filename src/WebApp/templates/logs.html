@@ -3,12 +3,22 @@
         <h1>All Logs</h1>
     </head>
     <script>
+        const data= {{logs | tojson }};
         function returntoindex(){
                 window.location.href = "/"; 
             }
+        function loadlogs(){
+            for(a of data){
+                li=document.createElement("li")
+                li.innerHTML="<p>"+a+"</p>"
+                ul=document.getElementById("ulist")
+                ul.appendChild(li)
+            }
+        }
+        window.addEventListener("DOMContentLoaded", loadlogs);
     </script>
     <body>
-        <ul>
+        <ul id="ulist">
             <li>
                 <p>[Type][time]content </p>
             </li>

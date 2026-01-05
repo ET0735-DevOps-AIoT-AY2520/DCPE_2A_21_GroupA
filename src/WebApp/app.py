@@ -5,6 +5,7 @@ from flask import Flask
 from flask import render_template
 from flask import request, redirect
 import db
+import logs as lg
 app=Flask(__name__)
 
 def getdbdata():
@@ -93,6 +94,8 @@ def getbookupdate():
     date= request.form.get("date")
     delflag = request.form.get("delete")
     #temporary confirmation of data downloading
+
+    db.updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag)
     print(id)
     print(date)
     print(title)
@@ -111,6 +114,7 @@ def getuserupdate():
     fine = request.form.get("fine")
     delete = request.form.get("del")
     #temporary confirmation of data downloading
+    db.upduserweb(id,delete,fine)
     print(delete)
     print(id)
     print(fine)
@@ -119,7 +123,8 @@ def getuserupdate():
 
 @app.route('/logs')
 def logs():
-    return render_template("logs.html")
+    print(lg.logs)
+    return render_template("logs.html",logs=lg.logs)
 
 @app.route("/newbooks")
 def newbook():
@@ -133,6 +138,7 @@ def getnewbooksdata():
     print(id)
     print(title)
     print(locationcode)
+    db.createnewbook(id,title,float(locationcode))
     return redirect('/')
 
 if __name__=="__main__":
