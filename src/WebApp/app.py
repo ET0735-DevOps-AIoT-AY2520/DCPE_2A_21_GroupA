@@ -136,6 +136,7 @@ def getnewbooksdata():
     print(id)
     print(title)
     print(locationcode)
+    db.createnewbook(id,title,float(locationcode))
     return redirect('/')
 
 if __name__=="__main__":

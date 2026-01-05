@@ -221,6 +221,18 @@ def upduserweb(id,delete,fine):
                         "fine":float(fine)
                     }
                 )
+
+def createnewbook(id,title,locationcode):
+    db.collection("books").add({
+        "date":"",
+        "extended":False,
+        "loanadm":"",
+        "onloan":False,
+        "reserved":False,
+        "id":id,
+        "title":title,
+        "location":locationdict[locationcode],
+    })
                 
 
 
