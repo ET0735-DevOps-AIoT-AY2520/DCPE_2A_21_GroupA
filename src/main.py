@@ -121,47 +121,57 @@ def collectbooks():
     lcd=LCD.lcd()
     global profileadm
     gotfine = 0
-    print("going in check fine")
     gotfine = db.checkfines(profileadm)
-    print(gotfine)
-    print(type(gotfine))
     if gotfine!=0:
+        logs.newlog(5,"Display prompt to pay fine LCD")
         lcd.lcd_clear()
         lcd.lcd_display_string("Pls Tap Card to",1)
         lcd.lcd_display_string("pay $"+str(gotfine),2)
         while True:
             #check if got sufficient balance
+            logs.newlog(4,"Reading Money")
             balance=rfid.readmoney()
             balance=float(balance)
             if balance<gotfine:
+                logs.newlog(6,"Card insufficient balance")
                 continue
             #set money from RFID
+            logs.newlog(5,"Updating Money")
             rfid.setmoney(str(balance-gotfine))
             rfid.readmoney()
             #Reset fine in firebase
             db.updatefine(profileadm,0)
+            logs.newlog(5,"Displaying confirmation msg")
             lcd.lcd_clear()
             lcd.lcd_display_string("Fine Deducted!",1)
             time.sleep(3)
             break
     #if no fine proceed here
+    logs.newlog(4,"Reading Humidity")
     rharr=rh.get_rh()
     rhavg=rh.calcavg(rharr)
+
     if rh.is_too_wet(rhavg,80):
+        logs.newlog(5,"Turn on alert LED")
         led.set_output(0,1)
         buzzer.init()
         buzzer.beep(0.125,0.125,12)
+        logs.newlog(5,"Turn on Alert Buzzer")
         led.set_output(0,0)
+        logs.newlog(7,"ERROR BOOK IS WET")
         print("too wet")
     else:
         print("not too wet")
     # Motor func below      
+    logs.newlog(5,"Turn On motor to dispense books")
     sm.servo_motor_open_close()
+    logs.newlog(5,"Turn on Confirmation Buzzer")
     buzzer.init()
     buzzer.beep(1.5,1.5,1)
     # Update Firebase Below
     db.collectedloan(profileadm)
     # Return to main menu func
+    logs.newlog(5,"Display LCD Main menu ")
     lcd.lcd_clear()
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
