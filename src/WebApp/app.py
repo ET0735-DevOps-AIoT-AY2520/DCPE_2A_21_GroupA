@@ -3,6 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from flask import Flask
 from flask import render_template
+from flask import request
 import db
 app=Flask(__name__)
 
@@ -35,6 +36,29 @@ def usersearch():
     [books,profiles,location]=getdbdata()
     return render_template("usersearch.html",books=books,profiles=profiles,location=location)
 
+#https://www.geeksforgeeks.org/html/retrieving-html-from-data-using-flask/
+@app.route('/booksearch/edit',methods=["POST"])
+def bookedit():
+    if request.method == "POST":
+        id = request.form.get("id")
+        title = request.form.get("title")
+        location = request.form.get("location")
+        loanadm = request.form.get("loanadm")
+        reserved = request.form.get("reserved")
+        loaned = request.form.get("onloan")
+        date= request.form.get("date")
+        jsonbook={
+            "id":id,
+            "title":title,
+            "location":location,
+            "loanadm":loanadm,
+            "reserved":reserved,
+            "onloan":loaned,
+            "date":date,
+        }
+    return render_template("bookedit.html",books=jsonbook)
+
+
 
 @app.route('/logs')
 def logs():
@@ -44,4 +68,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Bug Fix, added missing search button
+#Added template for bookedit and passing data from book search to it

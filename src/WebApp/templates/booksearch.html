@@ -5,6 +5,7 @@
             const book = {{ books | tojson }};
             const profile = {{ profiles | tojson }};
             const loca = {{location | tojson | safe}}
+            
             function returntoindex(){
                 window.location.href = "/"; 
             }
@@ -34,6 +35,17 @@
                         <p>${filtered[j].date}</p>
                         <p>Onloan: ${filtered[j].onloan}</p>
                         <p>Reserved: ${filtered[j].reserved}</p>
+                        <br>
+                        <form method="POST" action="/booksearch/edit">
+                            <input type="hidden" name="id" value="${filtered[j].id}">
+                            <input type="hidden" name="title" value="${filtered[j].title}">
+                            <input type="hidden" name="location" value="${filtered[j].location}">
+                            <input type="hidden" name="loanadm" value="${filtered[j].loanadm}">
+                            <input type="hidden" name="date" value="${filtered[j].date}">
+                            <input type="hidden" name="onloan" value="${filtered[j].onloan}">
+                            <input type="hidden" name="reserved" value="${filtered[j].reserved}">
+                            <button type="submit">Update</button>
+                        </form>
                     </div>
                     `;
                     ul.appendChild(li);
