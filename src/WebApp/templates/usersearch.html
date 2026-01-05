@@ -2,21 +2,43 @@
     <head>
         <h1>Seach by book</h1>
         <script>
+            const book = {{ books | tojson }};
+            const profile = {{ profiles | tojson }};
+            const loca = {{location | tojson | safe}};
             function returntoindex(){
                 window.location.href = "/"; 
             }
+            function fetchdata(){
+                let filtered=[];
+                let text=document.getElementById("userid");
+                text=text.value.toLowerCase();
+                for(let i=0;i<profile.length;i++)
+                {
+                    if(profile[i].adm.toLowerCase().includes(text))
+                        filtered.push(profile[i]);
+                }
+                ul=document.getElementsByClassName("userlist")[0];
+                for(let j=0;j<filtered.length;j++)
+                {
+                    li=document.createElement("li");
+                    li.innerHTML=`
+                        <div>
+                            <h1>Adm: ${filtered[j].adm}</h1>
+                            <p>Fine: ${filtered[j].fine}</p>
+                            <p>book1:</p>
+                        </div>
+                    `
+                    ul.appendChild(li);
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", fetchdata);
         </script>
     </head>
     <body>
-        User id: <input type="text"><br>
-        <ul>
-            <li>
-                <div>
-                    <h1>Adm</h1>
-                    <p>fine</p>
-                    <p>book1:</p>
-                </div>
-            </li>
+        User id: <input type="text" id="userid"><br>
+        <ul class="userlist">
+
         </ul>
         <input type="button" value="Return" onclick="returntoindex()">
     </body>

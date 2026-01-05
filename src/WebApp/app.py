@@ -32,7 +32,8 @@ def booksearch():
 
 @app.route('/usersearch')
 def usersearch():
-    return render_template("usersearch.html")
+    [books,profiles,location]=getdbdata()
+    return render_template("usersearch.html",books=books,profiles=profiles,location=location)
 
 
 @app.route('/logs')
@@ -43,4 +44,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added filtering of books as per req-51
+#Added list of adm and fine for each profile
