@@ -12,7 +12,7 @@ def booksearch():
 
 @app.route('/usersearch')
 def usersearch():
-    return "This is user search"
+    return render_template("usersearch.html")
 
 
 @app.route('/logs')
@@ -23,4 +23,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added go to logs and user search
+#Added template for user search
