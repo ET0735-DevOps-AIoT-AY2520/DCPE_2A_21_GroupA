@@ -5,6 +5,7 @@ from flask import Flask
 from flask import render_template
 from flask import request, redirect
 import db
+import logs as lg
 app=Flask(__name__)
 
 def getdbdata():
@@ -122,7 +123,8 @@ def getuserupdate():
 
 @app.route('/logs')
 def logs():
-    return render_template("logs.html")
+    print(lg.logs)
+    return render_template("logs.html",logs=lg.logs)
 
 @app.route("/newbooks")
 def newbook():

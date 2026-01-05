@@ -1,4 +1,7 @@
 import datetime
+
+logs=[]
+
 def logsinit():
     global logs
     logs=[]
