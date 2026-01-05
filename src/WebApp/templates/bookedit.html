@@ -8,6 +8,7 @@
     <body>
         <p>This is the edit page for {{books.id}}</p>
         <form  method="post" action="/booksearch/upd">
+        <input type="hidden" id="bookid" name="id" value="{{ books.id }}"><br>
         <label for="booktitle">Title</label>
         <input type="text" id="booktitle" name="title" value="{{ books.title }}"><br>
         <label for="bookdate">Date:</label>

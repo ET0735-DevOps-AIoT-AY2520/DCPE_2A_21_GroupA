@@ -58,7 +58,23 @@ def bookedit():
         }
     return render_template("bookedit.html",books=jsonbook)
 
-
+@app.route('/booksearch/upd',methods=["POST"])
+def getbookupdate():
+    id = request.form.get("id")
+    title = request.form.get("title")
+    location = request.form.get("location")
+    loanadm = request.form.get("loanadm")
+    reserved = request.form.get("reserved")
+    onloan = request.form.get("onloan")
+    date= request.form.get("date")
+    print(id)
+    print(date)
+    print(title)
+    print(location)
+    print(loanadm)
+    print(reserved)
+    print(onloan)
+    return "getting data"
 
 @app.route('/logs')
 def logs():
@@ -68,4 +84,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added template for bookedit and passing data from book search to it
+#Added downloading of data from edit page to flask
