@@ -14,4 +14,4 @@ def page2():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#added static and template folder with first page template
+#improved Html with js redirect to page 2
