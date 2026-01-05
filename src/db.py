@@ -192,15 +192,6 @@ def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
                 db.collection("books").document(book.id).delete()
             else:
                 print("updating book")
-                dbook=book.to_dict()
-                if date=="":
-                    date=dbook["date"]
-                if title=="":
-                    title=dbook["title"]
-                if location=="":
-                    location=dbook["location"]
-                if loanadm=="":
-                    loanadm=dbook["loanadm"]
                 if reserved=="true":
                     reserved=True
                 else:
@@ -216,6 +207,21 @@ def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
                     "reserved":reserved,
                     "title":title,
                     "location":location,})
+
+def upduserweb(id,delete,fine):
+    getallprofile()
+    global profiles
+    for profile in profiles:
+        if profile.to_dict()["adm"]==id:
+            if delete=="1":
+                db.collection("profile").document(profile.id).delete()
+            else:
+                db.collection("profile").document(profile.id).update(
+                    {
+                        "fine":float(fine)
+                    }
+                )
+                
 
 
 

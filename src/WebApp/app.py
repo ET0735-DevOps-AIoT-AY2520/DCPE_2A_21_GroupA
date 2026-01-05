@@ -113,6 +113,7 @@ def getuserupdate():
     fine = request.form.get("fine")
     delete = request.form.get("del")
     #temporary confirmation of data downloading
+    db.upduserweb(id,delete,fine)
     print(delete)
     print(id)
     print(fine)
