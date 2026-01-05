@@ -7,8 +7,6 @@ import db
 app=Flask(__name__)
 
 def getdbdata():
-    global books
-    global profiles
     db.getallbooks()
     db.getallprofile()
     books=[]
@@ -17,12 +15,13 @@ def getdbdata():
         books.append(book.to_dict())
     for profile in db.profiles:
         profiles.append(profile.to_dict())
+    return [books,profiles]
     
 
 
 @app.route('/')
 def index():
-    getdbdata()
+    [books,profiles]=getdbdata()
     return render_template("index.html",books=books,profiles=profiles)
 
 @app.route('/booksearch')
@@ -42,4 +41,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added calling of db for data
+#Added moving of data from python to html

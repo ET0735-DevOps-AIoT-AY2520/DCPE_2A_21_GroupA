@@ -2,6 +2,9 @@
     <head>
         <h1>This is the first page index</h1>
         <script>
+            //https://flask.palletsprojects.com/en/stable/patterns/javascript/
+            const book = {{ books | tojson }};
+            const profile = {{ profiles | tojson }};
             function gotobooksearch(){
                 window.location.href = "/booksearch"; 
             }
@@ -11,6 +14,11 @@
             function gotologs(){
                 window.location.href="/logs";
             }
+            function fetchdata(){
+                console.log(book)
+                console.log(profile)
+            }
+            window.addEventListener("DOMContentLoaded", fetchdata);
         </script>
     </head>
     <body>
