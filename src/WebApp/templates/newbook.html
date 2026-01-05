@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <h1>Add a book</h1>
+        <table>
+            <tr>
+                <th>Code</th><th>Location</th>
+            </th>
+            <tr>
+                <td>1</td><td>Woodlands Regional</td>
+            </tr>
+            <tr>
+                <td>2</td><td>Sembawang Library</td>
+            </tr>
+        </table>
+        <form method="POST" action="/newbooks/upd">
+            <label for="title">Title</label>
+            <input id="title" name="booktitle" type="text"><br>
+            <label for="id">Id</label>
+            <input id="id" name="bookid" type="text"><br>
+            <label for="location">Location Code</label>
+            <input name="locationcode" id="location" type="text"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

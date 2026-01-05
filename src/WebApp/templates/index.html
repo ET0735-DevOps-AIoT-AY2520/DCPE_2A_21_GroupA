@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <h1>Location Summary</h1>
+        <script>
+            //https://flask.palletsprojects.com/en/stable/patterns/javascript/
+            const book = {{ books | tojson }};
+            const profile = {{ profiles | tojson }};
+            const loca = {{location | tojson | safe}};
+            function gotobooksearch(){
+                window.location.href = "/booksearch"; 
+            }
+            function gotousersearch(){
+                window.location.href="/usersearch";
+            }
+            function gotologs(){
+                window.location.href="/logs";
+            }
+            function fetchdata(){
+                let bookloancount=0;
+                for(let i=0;i<book.length;i++)
+                {   
+                    if(book[i].onloan==true&&book[i].location==loca){
+                        bookloancount++;
+                    }
+                }
+                loanbook=document.getElementsByClassName("loanbook")[0];
+                li=document.createElement("li");
+                li.textContent=bookloancount;
+                loanbook.appendChild(li);
+                let resbookcount=0;
+                for(let i=0; i<book.length;i++){
+                    if(book[i].reserved==true&&book[i].location==loca)
+                    {
+                        resbookcount++;
+                    }
+                }
+                resbook=document.getElementsByClassName("resbook")[0];
+                resli=document.createElement("li");
+                resli.textContent=resbookcount;
+                resbook.appendChild(resli);
+                //get available books count
+                let availbookcount=0;
+                for(let i=0; i<book.length;i++){
+                    if(book[i].reserved==false&&book[i].onloan==false&&book[i].location==loca)
+                    {
+                        availbookcount++;
+                    }
+                }
+                availbook=document.getElementsByClassName("availbook")[0];
+                availli=document.createElement("li");
+                availli.textContent=availbookcount;
+                availbook.appendChild(availli);
+            }
+            function gotonewbook(){
+                window.location.href="/newbooks";
+            }
+
+            window.addEventListener("DOMContentLoaded", fetchdata);
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <ul class="loanbook">
+                    <li><h1>Total books on loan</h1></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="resbook">
+                    <li><h1>Total books Reserved</h1></li>
+                </ul>
+                
+            </li>
+            <li>
+                <ul class="availbook">
+                    <li><h1>Total books Available</h1></li>
+                </ul>
+            </li>
+        </ul>
+        <input type="button" onclick="gotobooksearch()" value="Go to booksearch"> <br>
+        <input type="button" onclick="gotousersearch()" value="Go to user search"> <br>
+        <input type="button" onclick="gotologs()" value="Go to logs"><br>
+        <input type="button" onclick="gotonewbook()" value="Go to new books">
+    </body>
+</html>

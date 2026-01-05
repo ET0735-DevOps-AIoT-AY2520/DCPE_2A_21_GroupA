@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <h1>Seach by book</h1>
+        <script>
+            const book = {{ books | tojson }};
+            const profile = {{ profiles | tojson }};
+            const loca = {{location | tojson | safe}};
+            function returntoindex(){
+                window.location.href = "/"; 
+            }
+            function fetchdata(){
+                let filtered=[];
+                let filteredbooks=[];
+                let text=document.getElementById("userid");
+                
+                search=text.value.toLowerCase();
+                
+                for(let i=0;i<profile.length;i++)
+                {
+                    if(profile[i].adm.toLowerCase().includes(search))
+                        filtered.push(profile[i]);
+                }
+                for(let i=0;i<book.length;i++)
+                {
+                    if(book[i].onloan==true||book[i].reserved==true){
+                        for(let j=0;j<filtered.length;j++){
+                            if(filtered[j].adm==book[i].loanadm){
+                                filteredbooks.push(book[i]);
+                            }
+                        }
+                    }
+                }
+                console.log(filteredbooks);
+                console.log(filtered);
+                ul=document.getElementsByClassName("userlist")[0];
+                ul.innerHTML="";
+                for(let j=0;j<filtered.length;j++)
+                {
+                    li=document.createElement("li");
+                    li.innerHTML=`
+                        <div class="${filtered[j].adm}">
+                            <h1>Adm: ${filtered[j].adm}</h1>
+                            <p>Fine: ${filtered[j].fine}</p>
+                            <h2>Books loaned</h2>
+                        </div>
+                        <form method="POST" action="/usersearch/edit">
+                            <input type="hidden" name="id" value="${filtered[j].adm}">
+                            <input type="hidden" name="fine" value="${filtered[j].fine}">
+                            <button type="submit">Update</button>
+                        </form>
+                    `
+                    ul.appendChild(li);
+                }
+                for(let k=0;k<filteredbooks.length;k++){
+                    div=document.getElementsByClassName(filteredbooks[k].loanadm)[0];
+                    p=document.createElement("p");
+                    p.textContent=filteredbooks[k].title;
+                    div.appendChild(p);
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", fetchdata);
+        </script>
+    </head>
+    <body>
+        User id: <input type="text" id="userid"><input type="button" value="Search" onclick="fetchdata()"><br>
+        <ul class="userlist">
+
+        </ul>
+        <input type="button" value="Return" onclick="returntoindex()">
+    </body>
+</html>
