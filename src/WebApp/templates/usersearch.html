@@ -43,6 +43,11 @@
                             <p>Fine: ${filtered[j].fine}</p>
                             <h2>Books loaned</h2>
                         </div>
+                        <form method="POST" action="/usersearch/edit">
+                            <input type="hidden" name="id" value="${filtered[j].adm}">
+                            <input type="hidden" name="fine" value="${filtered[j].fine}">
+                            <button type="submit">Update</button>
+                        </form>
                     `
                     ul.appendChild(li);
                 }

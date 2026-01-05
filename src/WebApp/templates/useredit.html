@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <p>This is the edit page for {{users.id}}</p>
+        <form  method="post" action="/usersearch/upd">
+        <input type="hidden" id="userid" name="id" value="{{ users.id }}"><br>
+        <label for="Fine">Fine:</label>
+        <input type="text" id="Fine" name="title" value="{{ users.fine }}"><br>
+        <button type="submit">Update</button>
+        </form>
+    </body>
+</html>
