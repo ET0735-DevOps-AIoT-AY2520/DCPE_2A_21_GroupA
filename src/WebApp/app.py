@@ -107,7 +107,9 @@ def getuserupdate():
     #download all data from body of html
     id = request.form.get("id")
     fine = request.form.get("fine")
+    delete = request.form.get("del")
     #temporary confirmation of data downloading
+    print(delete)
     print(id)
     print(fine)
     #send user back to main menu
@@ -121,4 +123,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added comments to app.py
+#Added delete button for Users
