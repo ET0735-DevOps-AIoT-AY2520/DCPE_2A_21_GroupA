@@ -4,7 +4,7 @@ app=Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello World"
+    return render_template("index.html")
 
 @app.route('/page2')
 def page2():
@@ -14,4 +14,4 @@ def page2():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#added second route
+#added static and template folder with first page template
