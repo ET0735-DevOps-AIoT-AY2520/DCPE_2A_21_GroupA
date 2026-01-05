@@ -84,4 +84,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added button to fast reset loan state of book
+#Added more filters in book search

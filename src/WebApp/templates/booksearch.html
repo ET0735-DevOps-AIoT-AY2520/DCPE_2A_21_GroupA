@@ -14,12 +14,28 @@
                 let filtered=[];
                 let input=document.getElementsByClassName("match")[0];
                 search=input.value.toLowerCase();
+                let inputlocation=document.getElementsByClassName("matchlocation")[0];
+                searchlocation=inputlocation.value.toLowerCase();
+                let inputonloan=document.getElementById("matchonloan");
+                searchonloan=inputonloan.value.toLowerCase();
+                let inputreserved=document.getElementById("matchreserved");
+                searchreserved=inputreserved.value.toLowerCase();
                 for(let i=0; i<book.length;i++)
                 {
-                    if(book[i].title.toLowerCase().includes(search))
+                    let checkonloan=(String(book[i].onloan).toLowerCase()==searchonloan)
+                    let checkreserved=(String(book[i].reserved).toLowerCase().trim()==String(searchreserved))
+                    if(checkreserved||checkonloan){
+                        checkonloan=true;
+                        checkreserved=true;
+                    }
+                   
+                    if(book[i].title.toLowerCase().includes(search)&&
+                    book[i].location.toLowerCase().includes(searchlocation)&&
+                    checkonloan&&checkreserved){
                         filtered.push(book[i]);
+                    }
                 }
-                if(search=="")
+                if(search==""&&searchlocation==""&&searchonloan==""&&searchreserved=="")
                     filtered=book;
                 ul=document.getElementsByClassName("booklist")[0];
                 ul.innerHTML="";
@@ -57,7 +73,21 @@
         </script>
     </head>
     <body>
-        Book id: <input type="text" class="match"><input type="button" value="filter" onclick="fetchdata()"><br>
+        Book title: <input type="text" class="match"><br>
+        Book location: <input type="text" class="matchlocation"><br>
+        <label for="matchonloan">OnLoan?</label>
+        <select id="matchonloan" name="Onloan">
+            <option value="">Nil</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        <label for="matchreserved">Reserved?</label>
+        <select id="matchreserved" name="reserved">
+            <option value="">Nil</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        <br><input type="button" value="filter" onclick="fetchdata()">
         <ul class="booklist">
             
         </ul>
