@@ -8,7 +8,7 @@ def index():
 
 @app.route('/booksearch')
 def booksearch():
-    return "This is book search"
+    return render_template("booksearch.html")
 
 @app.route('/usersearch')
 def usersearch():
@@ -16,11 +16,11 @@ def usersearch():
 
 
 @app.route('/logs')
-def usersearch():
-    return "This is user search"
+def logs():
+    return "This is logs"
 
 
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added structure for all rotues
+#Added template for booksearch html and return js to index.html
