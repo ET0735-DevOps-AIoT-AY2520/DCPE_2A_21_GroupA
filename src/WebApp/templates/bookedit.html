@@ -1,7 +1,16 @@
 <html>
     <head>
         <script>
-           
+           function forcecancel(){
+            loanadm=document.getElementById("bookloanadm");
+            loanadm.value="";
+            date=document.getElementById("bookdate");
+            date.value="";
+            onloan=document.getElementById("bookonloan");
+            onloan.value="false";
+            reserved=document.getElementById("bookreserved");
+            reserved.value="false";
+           }
             
         </script>
     </head>
@@ -22,7 +31,7 @@
         <label for="bookreserved">Reserved?:</label>
         <input type="text" id="bookreserved" name="reserved" value="{{books.reserved}}"><br>
         <button type="submit">Update</button>
-        
-
+        <button type="button" onclick="forcecancel()">Force Cancel Reservation</button>
+        </form>
     </body>
 </html>
