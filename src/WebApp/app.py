@@ -58,12 +58,14 @@ def bookedit():
         }
     return render_template("bookedit.html",books=jsonbook)
 
-#This function is for
+#This function for editing user
 @app.route('/usersearch/edit',methods=["POST"])
 def useredit():
     if request.method == "POST":
+        #get the id and fine from body of page 
         id = request.form.get("id")
         fine = request.form.get("fine") 
+        #convert to JSON and send it to useredit
         jsonuser={
             "id":id,
             "fine":fine,
@@ -88,6 +90,14 @@ def getbookupdate():
     print(onloan)
     return redirect('/')
 
+@app.route('/usersearch/upd',methods=["POST"])
+def getuserupdate():
+    id = request.form.get("id")
+    fine = request.form.get("fine")
+    print(id)
+    print(fine)
+    return redirect('/')
+
 @app.route('/logs')
 def logs():
     return render_template("logs.html")
@@ -96,4 +106,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added basic page for user fine editing
+#Added html to app.py for user edit
