@@ -96,17 +96,22 @@ def gotmatch(caminput):
     profileadm=db.matchprofile(caminput)
     print(profileadm)
     if profileadm!="":
+        logs.newlog(3,"Login Success")
+        logs.newlog(5,"Displaying mode selection menu")
         lcd.lcd_clear()
         lcd.lcd_display_string("1-Collect Books",1)
         lcd.lcd_display_string("2-Return Books",2)
         while True:
             if currentkey== 1:
+                logs.newlog(0,"Selected Collect book mode")
                 collectbooks()
                 break
             elif currentkey ==2:
+                logs.newlog(0,"Selected return book mode")
                 returnbooks()
                 break
     else:
+        logs.newlog(3,"LOGIN FAILED")
         lcd.lcd_clear()
         lcd.lcd_display_string("No Account",1)
         lcd.lcd_display_string("Found",2)
