@@ -11,6 +11,21 @@
             reserved=document.getElementById("bookreserved");
             reserved.value="false";
            }
+           function toggledelete(){
+            button=document.getElementById("delflag")
+            console.log(button.value);
+            if(button.value=="0"){
+                button.value="1";
+                all=document.getElementsByTagName("body")[0];
+                all.style.backgroundColor="#FF7F7F";
+
+            }else{
+                button.value="0";
+                all=document.getElementsByTagName("body")[0];
+                all.style.backgroundColor="white";
+            }
+            
+            }
             
         </script>
     </head>
@@ -30,8 +45,10 @@
         <input type="text" id="bookonloan" name="onloan" value="{{books.onloan}}"><br>
         <label for="bookreserved">Reserved?:</label>
         <input type="text" id="bookreserved" name="reserved" value="{{books.reserved}}"><br>
+        <input type="hidden" id="delflag" name="delete" value="0">
+        <button type="button" id="delbutton" onclick="toggledelete()">Delete Book</button><br>
+        <button type="button" onclick="forcecancel()">Force Cancel Reservation</button><br>
         <button type="submit">Update</button>
-        <button type="button" onclick="forcecancel()">Force Cancel Reservation</button>
         </form>
     </body>
 </html>

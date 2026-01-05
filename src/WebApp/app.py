@@ -91,6 +91,7 @@ def getbookupdate():
     reserved = request.form.get("reserved")
     onloan = request.form.get("onloan")
     date= request.form.get("date")
+    delflag = request.form.get("delete")
     #temporary confirmation of data downloading
     print(id)
     print(date)
@@ -99,6 +100,7 @@ def getbookupdate():
     print(loanadm)
     print(reserved)
     print(onloan)
+    print(delflag)
     #immediately send the user back to main screen after data acquired
     return redirect('/')
 
@@ -123,4 +125,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added delete button for Users
+#Added delete button for books
