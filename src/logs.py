@@ -10,6 +10,7 @@ def newlog(type,msg):
     global logs
     now=datetime.datetime.now()
     types={
+        0:"INFO",
         1:"READ",
         2:"WRITE",
         3:"LOGIN",

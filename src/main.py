@@ -9,6 +9,7 @@ import rfid
 import humidity as rh
 import servo_motor as sm
 import logs 
+from WebApp.app import app
 
 from hal import hal_led as led
 from hal import hal_lcd as LCD
@@ -34,8 +35,10 @@ from hal import hal_accelerometer as accel
 def key_pressed(key):
     global currentkey
     currentkey=key
+    logs.newlog(4,"Keypad Pressed"+ currentkey)
     time.sleep(1)
     currentkey="z"
+    
 
 
 
@@ -43,22 +46,31 @@ def main():
     global currentkey
     currentkey="z"
     print("test")
+    logs.newlog(0,"Init LCD")
     lcd = LCD.lcd()
     lcd.lcd_clear()
+    logs.newlog(0,"Init RFID")
     rfid.setup()
+    logs.newlog(0,"Init LED")
     led.init()
     # Display something on LCD
+    logs.newlog(5,"Initial LCD displayed")
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
+    logs.newlog(0,"Init PICam")
     picam.start_scanner()
     # Initialize the HAL keypad driver
+    logs.newlog(0,"Init Keypad")
     keypad.init(key_pressed)
-    logs.logsinit()
+    
+    
 
     #db autoscan
+    logs.newlog(0,"Starting Reservation Timeout Thread")
     remres=Thread(target=db.reservationTimeout)
     remres.start()
     # Start the keypad scanning which will run forever in an infinite while(True) loop in a new Thread "keypad_thread"
+    logs.newlog(0,"Start Keypad Thread")
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
     caminput="0"
@@ -200,6 +212,10 @@ def returnbooks():
 
 
 if __name__ == '__main__':
-    main()
+    t = Thread(target=main, daemon=True)
+    t.start()
+
+    # start flask (blocks here)
+    app.run(host="0.0.0.0", port=5000, debug=False)
 
 #Added return to main menu REQ-29
