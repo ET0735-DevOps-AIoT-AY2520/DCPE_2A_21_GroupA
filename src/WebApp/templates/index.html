@@ -1,6 +1,6 @@
 <html>
     <head>
-        <h1>This is the first page index</h1>
+        <h1>Location Summary</h1>
         <script>
             //https://flask.palletsprojects.com/en/stable/patterns/javascript/
             const book = {{ books | tojson }};
@@ -16,20 +16,40 @@
                 window.location.href="/logs";
             }
             function fetchdata(){
-                let bookloan=0;
+                let bookloancount=0;
                 for(let i=0;i<book.length;i++)
                 {   
-                    console.log(loca);
                     if(book[i].onloan==true&&book[i].location==loca){
-                        bookloan++;
-                        
+                        bookloancount++;
                     }
-                    console.log(bookloan);
                 }
                 loanbook=document.getElementsByClassName("loanbook")[0];
                 li=document.createElement("li");
-                li.textContent=bookloan;
+                li.textContent=bookloancount;
                 loanbook.appendChild(li);
+                let resbookcount=0;
+                for(let i=0; i<book.length;i++){
+                    if(book[i].reserved==true&&book[i].location==loca)
+                    {
+                        resbookcount++;
+                    }
+                }
+                resbook=document.getElementsByClassName("resbook")[0];
+                resli=document.createElement("li");
+                resli.textContent=resbookcount;
+                resbook.appendChild(resli);
+                //get available books count
+                let availbookcount=0;
+                for(let i=0; i<book.length;i++){
+                    if(book[i].reserved==false&&book[i].onloan==false&&book[i].location==loca)
+                    {
+                        availbookcount++;
+                    }
+                }
+                availbook=document.getElementsByClassName("availbook")[0];
+                availli=document.createElement("li");
+                availli.textContent=availbookcount;
+                availbook.appendChild(availli);
             }
             window.addEventListener("DOMContentLoaded", fetchdata);
         </script>
@@ -48,7 +68,9 @@
                 
             </li>
             <li>
-                <h1>Total books Available</h1>
+                <ul class="availbook">
+                    <li><h1>Total books Available</h1></li>
+                </ul>
             </li>
         </ul>
         <input type="button" onclick="gotobooksearch()" value="Go to booksearch"> <br>

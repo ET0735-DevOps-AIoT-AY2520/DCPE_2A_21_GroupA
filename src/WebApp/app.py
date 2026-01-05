@@ -42,4 +42,4 @@ def logs():
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0") #0.0.0.0 accessible from all IP
 
-#Added display of total books on loan on html
+#Added display of total books reserved and available books req-56
