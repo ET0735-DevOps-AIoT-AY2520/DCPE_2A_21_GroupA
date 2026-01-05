@@ -182,6 +182,7 @@ def collectbooks():
 def returnbooks():
     lcd=LCD.lcd()
     lcd.lcd_clear()
+    logs.newlog(5,"Display LCD prompt to scan books")
     lcd.lcd_display_string("Scan Book",1)
     lcd.lcd_display_string("0 to end",2)
     scanned=[]
@@ -189,11 +190,15 @@ def returnbooks():
         #if a barcode has been scanned
         if not picam.barcode_queue.empty():
             caminput=picam.barcode_queue.get()
+            logs.newlog(4,"Scanned Book: "+caminput)
             scanned.append(caminput)
             #check humidity
+            logs.newlog(4,"Read Humidity of book")
             rharr=rh.get_rh()
             rhavg=rh.calcavg(rharr)
             if rh.is_too_wet(rhavg,80):
+                logs.newlog(5,"Turn on Alert Buzzer")
+                logs.newlog(5,"Turn on Alert LED")
                 led.set_output(0,1)
                 buzzer.init()
                 buzzer.beep(0.125,0.125,12)
@@ -214,12 +219,15 @@ def returnbooks():
             #reset book loan state
             db.remloan(scanned)
             #show confirmation message
+            logs.newlog(5,"Display return books confirm msg LCD")
             lcd.lcd_clear()
             lcd.lcd_display_string("Returned Books!",1)
             time.sleep(1.5)
+            logs.newlog(5,"Display Prompt LCD to Scan books")
             lcd.lcd_clear()
             lcd.lcd_display_string("Scan Book",1)
             lcd.lcd_display_string("0 to end",2)
+    logs.newlog(5,"Display main menu LCD")
     lcd.lcd_clear()
     lcd.lcd_display_string("Please Scan", 1)
     lcd.lcd_display_string("Your Card", 2)
