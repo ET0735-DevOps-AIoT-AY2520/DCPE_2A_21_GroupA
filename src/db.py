@@ -3,6 +3,7 @@ from firebase_admin import credentials, firestore
 import threading as thread
 import time
 import datetime
+import logs
 # Load your service account key file
 cred = credentials.Certificate("/home/pi/ET0735/DCPE_2A_21_GroupA/serviceAccoutKey.json")
 firebase_admin.initialize_app(cred)
@@ -24,7 +25,7 @@ setlocation = 1
 def getallbooks():
     global books
     books = list(db.collection("books").stream())
-
+    logs.newlog(1,"Reading from DB Books")
     # Loop through documents
     '''
     for doc in books:
@@ -36,7 +37,7 @@ def getallbooks():
 def getallprofile():
     global profiles
     profiles = list(db.collection("profile").stream())
-
+    logs.newlog(1,"Reading from DB profiles")
     # Loop through documents
     '''
     for profile in profiles:
@@ -49,7 +50,6 @@ def matchprofile(input):
     global profiles
     global books
     for profile in profiles:
-        
         if profile.to_dict()["adm"]==str(input):
             print(profile.to_dict()["adm"])
             return str(profile.to_dict()["adm"])
@@ -64,10 +64,11 @@ def find_reserved_books(input):
         #return books reserved by this user specifically at this location
         if a["loanadm"]==str(input) and a["reserved"]==True and a["location"]==locationdict[setlocation]:
             result.append(a)
-    
+    logs.newlog(0,"Found "+str(len(result))+"Reserved Books")
     return result
 
 def checkfines(input):
+    logs.newlog(0,"Checking Fines")
     for profile in profiles:
         a=profile.to_dict()
         if a["adm"]==input:
@@ -82,6 +83,7 @@ def updatefine(target,data):
             id=profile.id
     if id!="":
         db.collection("profile").document(id).update({"fine":data})
+        logs.newlog(2,"Updated "+id+"fine to "+str(data))
 
 def collectedloan(adm):
     getallbooks()
@@ -97,6 +99,7 @@ def collectedloan(adm):
                     "reserved":False,
                     "date":str(datetime.datetime.now().year)+"-"+str(datetime.datetime.now().month)+"-"+str(datetime.datetime.now().day)
                 })
+                logs.newlog(2,"Updated"+str(adm)+" books: "+str(book.to_dict()["title"])+" to loaned")
 
 def checkprofile(adm):
     getallprofile()
@@ -116,7 +119,7 @@ def checkreturndate(adm,returned):
         for book in books:
             if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation] and book.to_dict()["id"]==returned[i]:
                 result.append(book.to_dict())
-    print(result)
+    logs.newlog(0,"Found loanedbooks")
     return result
 
 def calculatefine(input,timenow):
@@ -130,7 +133,7 @@ def calculatefine(input,timenow):
         if reserved_date<cutoff:
             totaldayslate+=(cutoff-reserved_date).days
     totalfine=totaldayslate*0.15
-    print(totalfine)
+    logs.newlog(0,"Calculated fine $"+str(totalfine))
     return totalfine
 
 def remloan(scanned):
@@ -146,6 +149,7 @@ def remloan(scanned):
                     "loanadm":"",
                     "onloan":False,
                     "reserved":False,})
+                logs.newlog(2,"Reset loan status of "+str(a["title"]))
 
 
 def reservationTimeout():
@@ -180,6 +184,7 @@ def remreserve(bookid):
         if book.to_dict()["id"]==bookid:
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
+            logs.newlog(2,"Removed reservation "+str(book.to_dict()["title"]))
 
 def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
     getallbooks()
@@ -207,6 +212,8 @@ def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
                     "reserved":reserved,
                     "title":title,
                     "location":location,})
+                logs.newlog(2,"Updated book "+str(book.to_dict()["title"])+" by admin request")
+
 
 def upduserweb(id,delete,fine):
     getallprofile()
@@ -221,6 +228,7 @@ def upduserweb(id,delete,fine):
                         "fine":float(fine)
                     }
                 )
+                logs.newlog(2,"Updated profile "+str(profile.to_dict()["id"])+" by admin request")
 
 def createnewbook(id,title,locationcode):
     db.collection("books").add({
@@ -233,6 +241,7 @@ def createnewbook(id,title,locationcode):
         "title":title,
         "location":locationdict[locationcode],
     })
+    logs.newlog(2,"Created new book by admin request")
                 
 
 
