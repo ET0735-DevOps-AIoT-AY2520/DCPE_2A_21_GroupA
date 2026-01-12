@@ -119,7 +119,7 @@ def checkreturndate(adm,returned):
         for book in books:
             if book.to_dict()["onloan"]==True and book.to_dict()["loanadm"]==adm and book.to_dict()["location"]==locationdict[setlocation] and book.to_dict()["id"]==returned[i]:
                 result.append(book.to_dict())
-    print(result)
+    logs.newlog(0,"Found loanedbooks")
     return result
 
 def calculatefine(input,timenow):
@@ -133,7 +133,7 @@ def calculatefine(input,timenow):
         if reserved_date<cutoff:
             totaldayslate+=(cutoff-reserved_date).days
     totalfine=totaldayslate*0.15
-    print(totalfine)
+    logs.newlog(0,"Calculated fine $"+str(totalfine))
     return totalfine
 
 def remloan(scanned):
@@ -149,6 +149,7 @@ def remloan(scanned):
                     "loanadm":"",
                     "onloan":False,
                     "reserved":False,})
+                logs.newlog(2,"Reset loan status of "+str(a["title"]))
 
 
 def reservationTimeout():
@@ -183,6 +184,7 @@ def remreserve(bookid):
         if book.to_dict()["id"]==bookid:
             print('removed:'+book.to_dict()["title"])
             db.collection("books").document(book.id).update({"date":"","extended":False,"loanadm":"","onloan":False,"reserved":False,})
+            logs.newlog(2,"Removed reservation "+str(book.to_dict()["title"]))
 
 def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
     getallbooks()
@@ -210,6 +212,8 @@ def updbookweb(id,date,title,location,loanadm,reserved,onloan,delflag):
                     "reserved":reserved,
                     "title":title,
                     "location":location,})
+                logs.newlog(2,"Updated book "+str(book.to_dict()["title"])+" by admin request")
+
 
 def upduserweb(id,delete,fine):
     getallprofile()
@@ -224,6 +228,7 @@ def upduserweb(id,delete,fine):
                         "fine":float(fine)
                     }
                 )
+                logs.newlog(2,"Updated profile "+str(profile.to_dict()["id"])+" by admin request")
 
 def createnewbook(id,title,locationcode):
     db.collection("books").add({
@@ -236,6 +241,7 @@ def createnewbook(id,title,locationcode):
         "title":title,
         "location":locationdict[locationcode],
     })
+    logs.newlog(2,"Created new book by admin request")
                 
 
 
