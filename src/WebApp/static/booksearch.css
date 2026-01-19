@@ -1,0 +1,114 @@
+/* Page background & text */
+body {
+    background-color: #000;
+    color: #7fffd4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Headings */
+
+
+
+/* Inputs & buttons */
+
+input {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    background-color: #111;
+    color: #9ffcff;
+    border: 1px solid #7fffd4;
+    padding: 6px 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(127, 255, 212, 0.25);
+}
+
+input[type="text"] {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+input[type="text"] {
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.textfield {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.textfield label{
+    width: 120px;
+    font-weight: 700;
+}
+
+label[for="matchonloan"]{
+    margin-left: 120px;
+}
+
+select[id="matchonloan"], select[id="matchreserved"] {
+    background-color: black;
+    color: #7fffd4;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(127, 255, 212, 0.25);
+}
+
+input[type="button"][value="filter"] {
+    margin-left: 10px;
+    padding: 7px 36px 7px 14px; 
+    font-weight: 700;
+
+    background-color: #7fffd4;
+    color: #000;
+    border: 2px solid #7fffd4;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18l-7 8v5l-4 2v-7L3 5z' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center; 
+    background-size: 16px 16px;
+}
+
+
+input[type="button"][value="Return"] {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+    padding: 10px 16px 10px 44px;
+    font-weight: 700;
+
+    background-color: #7fffd4;
+    color: #000;
+    border: 2px solid #7fffd4;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='14 6 8 12 14 18' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    background-size: 16px 16px;
+}
+
+input[type="button"],
+button {
+    transition: transform 0.05s ease, filter 0.15s ease;
+}
+
+input[type="button"]:hover,
+button:hover {
+    filter: brightness(0.95);
+}
+
+input[type="button"]:active,
+button:active {
+    transform: translateY(1px);
+}

@@ -1,6 +1,7 @@
 <html>
     <head>
-        <h1>Seach by book</h1>
+        <link rel="stylesheet" href="../static/booksearch.css">
+        <h1>Search by book</h1>
         <script>
             const book = {{ books | tojson }};
             const profile = {{ profiles | tojson }};
@@ -79,8 +80,14 @@
         </script>
     </head>
     <body>
-        Book title: <input type="text" class="match"><br>
-        Book location: <input type="text" class="matchlocation"><br>
+        <div class= "textfield">
+            <label>Book title: </label><input type="text" class="match">
+        </div>
+        
+        <div class= "textfield">
+            <label>Location : </label> <input type="text" class="matchlocation">
+        </div>
+        
         <label for="matchonloan">OnLoan?</label>
         <select id="matchonloan" name="Onloan">
             <option value="">Nil</option>
@@ -93,7 +100,7 @@
             <option value="true">True</option>
             <option value="false">False</option>
         </select>
-        <br><input type="button" value="filter" onclick="fetchdata()">
+        <input type="button" value="filter" onclick="fetchdata()">
         <ul class="booklist">
             
         </ul>
