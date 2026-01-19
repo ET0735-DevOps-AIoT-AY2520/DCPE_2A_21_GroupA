@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../static/usersearch.css">
-        <h1>Search by book</h1>
+        <h1 id="page-title">Search by User ID</h1>
         <script>
             const book = {{ books | tojson }};
             const profile = {{ profiles | tojson }};
@@ -47,7 +47,7 @@
                         <form method="POST" action="/usersearch/edit">
                             <input type="hidden" name="id" value="${filtered[j].adm}">
                             <input type="hidden" name="fine" value="${filtered[j].fine}">
-                            <button type="submit">Update</button>
+                            <button type="submit" class="btn-update">Update</button>
                         </form>
                     `
                     ul.appendChild(li);
