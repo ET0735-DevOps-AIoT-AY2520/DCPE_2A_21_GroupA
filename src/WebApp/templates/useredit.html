@@ -1,33 +1,47 @@
 <html>
-    <head>
-        <script>
-            function toggledelete(){
-                button=document.getElementById("delflag");
-                console.log(button.value);
-                if(button.value=="0"){
-                    button.value="1";
-                    page=document.getElementsByTagName("body")[0]
-                    page.style.backgroundColor="#FF7F7F";
-                }
-                else{
-                    button.value="0";
-                    page=document.getElementsByTagName("body")[0]
-                    page.style.backgroundColor="white";
-                }
-                console.log(button.value);
 
+<head>
+    <link rel="stylesheet" href="../static/useredit.css">
+    <script>
+        function toggledelete() {
+            button = document.getElementById("delflag");
+            console.log(button.value);
+            if (button.value == "0") {
+                button.value = "1";
+                page = document.getElementsByTagName("body")[0]
+                page.style.backgroundColor = "#FF7F7F";
             }
-        </script>
-    </head>
-    <body>
-        <p>This is the edit page for {{users.id}}</p>
-        <form  method="post" action="/usersearch/upd">
-        <input type="hidden" id="userid" name="id" value="{{ users.id }}"><br>
-        <label for="Fine">Fine:</label>
-        <input type="text" id="Fine" name="fine" value="{{ users.fine }}"><br>
-        <input type="hidden" value="0" id="delflag" name="del"><br>
-        <button type="button" id="deltrig" onclick="toggledelete()" >Delete User</button><br>
-        <button type="submit">Update</button>
-        </form>
-    </body>
+            else {
+                button.value = "0";
+                page = document.getElementsByTagName("body")[0]
+                page.style.backgroundColor = "white";
+            }
+            console.log(button.value);
+
+        }
+    </script>
+</head>
+
+<body>
+    <p>This is the edit page for {{users.id}}</p>
+
+    <div class="box">
+        <div class="info">
+            <form method="post" action="/usersearch/upd">
+                <input type="hidden" id="userid" name="id" value="{{ users.id }}"><br>
+                <label for="Fine">Fine:</label>
+                <input type="text" id="Fine" name="fine" value="{{ users.fine }}"><br>
+                <input type="hidden" value="0" id="delflag" name="del"><br>
+                <button type="button" id="deltrig" onclick="toggledelete()">Delete User</button><br>
+                <button type="submit">Update</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
 </html>
