@@ -76,6 +76,15 @@ input[type="button"][value="filter"] {
     background-size: 16px 16px;
 }
 
+.search-result {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    background-color: #111;
+    color: #9ffcff;
+    border: 1px solid #7fffd4;
+    padding: 6px 10px;
+}
+
 
 input[type="button"][value="Return"] {
     position: fixed;
