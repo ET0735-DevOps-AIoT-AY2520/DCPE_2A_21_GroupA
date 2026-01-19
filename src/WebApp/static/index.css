@@ -1,0 +1,98 @@
+/* Page background & text */
+body {
+    background-color: #000;
+    color: #7fffd4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#page-title {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 50px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  gap: 14px;          
+}
+
+.loanbook > li::before, .resbook > li::before, .availbook > li::before {
+  content: "\27A4";   
+  color: #7fffd4;
+  font-weight: 700;
+}
+
+input[type="button"] {
+    padding: 10px 16px 10px 40px;
+    font-weight: 700;
+
+    background-color: #7fffd4;
+    color: #000;
+    border: 2px solid #7fffd4;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    
+}
+
+input[type="button"][value="Go to booksearch"], input[type="button"][value="Go to new books"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v17a2 2 0 0 0-2-2H5a3 3 0 0 0-3 3V4z' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M22 4a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3v17a2 2 0 0 1 2-2h7a3 3 0 0 1 3 3V4z' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    background-size: 20px 20px;
+    color: black;
+    
+}
+
+input[type="button"][value="Go to user search"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cline x1='16.5' y1='16.5' x2='22' y2='22' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    background-size: 20px 20px;
+    color: black;
+    
+}
+
+input[type="button"][value="Go to logs"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h16v16H4z' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cline x1='7' y1='8' x2='17' y2='8' stroke='%23000' stroke-width='2'/%3E%3Cline x1='7' y1='12' x2='17' y2='12' stroke='%23000' stroke-width='2'/%3E%3Cline x1='7' y1='16' x2='13' y2='16' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    background-size: 20px 20px;
+    color: black;
+    
+}
+
+/* Additional improvements */
+.nav-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    gap: 12px;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="button"]:hover {
+    color: white;
+    filter: brightness(0.8);
+    transform: translateY(3px);
+}
+
+input[type="button"]:active {
+    color: black;
+    filter : brightness(1);
+    transform: translateY(7px);
+}
+
+
