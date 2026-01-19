@@ -7,15 +7,11 @@ body {
 
 }
 
-
-p {
+.pg-title {
     text-align: center;
-    margin-top: 30px;
-    font-size: 40px;
 }
 
-.box {
-    
+.box{
     display: flex;
     justify-content: center;
     align-content: center;
@@ -31,27 +27,22 @@ p {
     width: 500px;
 }
 
-.info form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(127, 255, 212, 0.25);
 }
 
-label[for="Fine"]{
-    color: #7fffd4;
-    font-weight: 300;
+input[type="text"] {
+    vertical-align: middle;
+    display: inline-block;
 }
 
-button[type="button"], button[type="submit"]{
-    width: 150px;
-    background-color: #7fffd4;
-    color: black;
-    border: 2px solid black;
-    border-radius: 6px;
-    padding: 8px 14px;
-    font-weight: 700;
-    cursor: pointer;
-
+input[type="text"] {
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 input[type="text"]{
@@ -62,6 +53,38 @@ input[type="text"]{
     border-radius: 5px;
     outline: none;
     box-shadow: 0 0 0 3px rgba(127, 255, 212, 0.25);
+}
+
+.textfield {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.textfield label{
+    width: 120px;
+    font-weight: 700;
+}
+
+.btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  gap: 12px;               
+  width: 100%;             
+  margin-top: 20px;
+}
+
+.btns button{
+  width: 200px;            
+  text-align: center;
+  background-color: #7fffd4;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 6px;
+  font-weight: 700;
+  padding: 8px 14px;
+  cursor: pointer;
 }
 
 button[type="button"]:hover, button[type="submit"]:hover {
