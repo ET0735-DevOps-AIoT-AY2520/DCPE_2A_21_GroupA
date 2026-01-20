@@ -1,56 +1,92 @@
-/* Page background & text */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap");
+
 body {
-    background-color: #000;
+    margin: 0;
+    min-height: 100vh;
     color: #7fffd4;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(900px 420px at 50% 0%, rgba(127, 255, 212, 0.18), transparent 60%),
+        radial-gradient(700px 500px at 90% 20%, rgba(127, 255, 212, 0.14), transparent 60%),
+        radial-gradient(700px 500px at 10% 30%, rgba(127, 255, 212, 0.12), transparent 60%),
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='520' viewBox='0 0 900 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23000'/%3E%3Cstop offset='1' stop-color='%23060a0a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='900' height='520' fill='url(%23g)'/%3E%3Cg opacity='0.22'%3E%3Cg stroke='%237fffd4' stroke-width='2' fill='none'%3E%3Cpath d='M50 130H850'/%3E%3Cpath d='M70 260H830'/%3E%3Cpath d='M50 390H850'/%3E%3C/g%3E%3Cg fill='%237fffd4' opacity='0.10'%3E%3Crect x='90' y='70' width='22' height='60'/%3E%3Crect x='120' y='55' width='18' height='75'/%3E%3Crect x='145' y='80' width='30' height='50'/%3E%3Crect x='185' y='60' width='16' height='70'/%3E%3Crect x='210' y='75' width='28' height='55'/%3E%3Crect x='255' y='65' width='20' height='65'/%3E%3Crect x='285' y='78' width='26' height='52'/%3E%3Crect x='325' y='58' width='16' height='72'/%3E%3Crect x='350' y='74' width='30' height='56'/%3E%3Crect x='395' y='64' width='18' height='66'/%3E%3Crect x='420' y='78' width='28' height='52'/%3E%3Crect x='465' y='56' width='18' height='74'/%3E%3Crect x='490' y='78' width='26' height='52'/%3E%3Crect x='530' y='62' width='20' height='68'/%3E%3Crect x='560' y='77' width='30' height='53'/%3E%3Crect x='605' y='60' width='18' height='70'/%3E%3Crect x='630' y='79' width='28' height='51'/%3E%3Crect x='675' y='58' width='18' height='72'/%3E%3Crect x='700' y='76' width='26' height='54'/%3E%3Crect x='740' y='62' width='20' height='68'/%3E%3C/g%3E%3C/g%3E%3Cg opacity='0.18'%3E%3Ccircle cx='180' cy='210' r='120' fill='%237fffd4'/%3E%3Ccircle cx='720' cy='280' r='160' fill='%237fffd4'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    padding: 28px 18px;
 }
 
 #page-title {
     text-align: center;
-    margin-top: 30px;
+    margin: 0 0 18px 0;
     font-size: 50px;
+    font-weight: 900;
 }
 
-ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 30px;
-  margin-left: 50px;
+.stats {
+    list-style: none;
+    padding: 0;
+    margin: 30px 50px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
 }
 
-ul li {
-  display: flex;
-  align-items: center;
-  gap: 14px;          
+.stats>li {
+    flex: 1;
 }
 
-.loanbook > li::before, .resbook > li::before, .availbook > li::before {
-  content: "\27A4";   
-  color: #7fffd4;
-  font-weight: 700;
+.loanbook,
+.resbook,
+.availbook {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.stat-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.stat-title::before {
+    content: "\27A4";
+    color: #7fffd4;
+    font-weight: 700;
+}
+
+.loanbook li:not(.stat-title),
+.resbook li:not(.stat-title),
+.availbook li:not(.stat-title) {
+    margin: 18px 0 0 0;
+    text-align: center;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #7fffd4;
 }
 
 input[type="button"] {
     padding: 10px 16px 10px 40px;
     font-weight: 700;
-
     background-color: #7fffd4;
     color: #000;
     border: 2px solid #7fffd4;
     border-radius: 6px;
-
     cursor: pointer;
-
-    
 }
 
-input[type="button"][value="Go to booksearch"], input[type="button"][value="Go to new books"] {
+input[type="button"][value="Go to booksearch"],
+input[type="button"][value="Go to new books"] {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v17a2 2 0 0 0-2-2H5a3 3 0 0 0-3 3V4z' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M22 4a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3v17a2 2 0 0 1 2-2h7a3 3 0 0 1 3 3V4z' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: 14px center;
     background-size: 20px 20px;
-    color: black;
-    
 }
 
 input[type="button"][value="Go to user search"] {
@@ -58,8 +94,6 @@ input[type="button"][value="Go to user search"] {
     background-repeat: no-repeat;
     background-position: 14px center;
     background-size: 20px 20px;
-    color: black;
-    
 }
 
 input[type="button"][value="Go to logs"] {
@@ -67,32 +101,24 @@ input[type="button"][value="Go to logs"] {
     background-repeat: no-repeat;
     background-position: 14px center;
     background-size: 20px 20px;
-    color: black;
-    
 }
 
-/* Additional improvements */
 .nav-buttons {
     position: fixed;
     bottom: 20px;
     left: 20px;
     right: 20px;
-    gap: 12px;
-    
     display: flex;
     justify-content: space-between;
+    gap: 12px;
 }
 
 input[type="button"]:hover {
-    color: white;
-    filter: brightness(0.8);
-    transform: translateY(3px);
+    filter: brightness(0.9);
+    transform: translateY(-1px);
 }
 
 input[type="button"]:active {
-    color: black;
-    filter : brightness(1);
-    transform: translateY(7px);
+    transform: translateY(1px);
+    filter: brightness(0.9);
 }
-
-
