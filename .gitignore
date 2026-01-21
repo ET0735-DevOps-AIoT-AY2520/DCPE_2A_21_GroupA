@@ -3,3 +3,10 @@ src/__pycache__/
 docs/~$S_project_xxx.docx
 docs/~$System_Test_Report_template.xlsx
 src/WebApp/__pycache__/
+serviceAccoutKey.json
+src/SPI-Py/
+src/debugfirebase.py
+src/get-pip.py
+src/get-pip.py.1
+src/single_frame.jpg
+test.jpg

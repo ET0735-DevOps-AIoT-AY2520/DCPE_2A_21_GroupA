@@ -5,9 +5,13 @@ import time
 import datetime
 import logs
 # Load your service account key file
-cred = credentials.Certificate("/home/pi/ET0735/DCPE_2A_21_GroupA/serviceAccoutKey.json")
-firebase_admin.initialize_app(cred)
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # /Project/src
+KEY_PATH = os.path.join(BASE_DIR, "..", "serviceAccoutKey.json")  # /Project/serviceAccoutKey.json
+
+cred = credentials.Certificate(KEY_PATH)
+firebase_admin.initialize_app(cred)
 # Initialize Firestore client
 db = firestore.client()
 

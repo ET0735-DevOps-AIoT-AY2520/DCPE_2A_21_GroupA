@@ -1,0 +1,36 @@
+Flask==1.1.2
+Jinja2==2.11.3
+MarkupSafe==2.0.1
+itsdangerous==1.1.0
+Werkzeug==1.0.1
+
+
+pyzbar==0.1.9
+importlib-metadata>=6.0
+# Firebase / Google (compatible set)
+firebase-admin==6.2.0
+google-cloud-firestore==2.11.0
+google-cloud-storage==3.1.1
+google-api-core==2.28.1
+google-auth==2.43.0
+google-auth-httplib2==0.2.1
+google-api-python-client==2.187.0
+
+# gRPC (CRITICAL FIX)
+grpcio==1.48.2
+grpcio-status==1.48.2
+
+# Protobuf stack
+protobuf>=4.21.0,<5.0.0
+googleapis-common-protos==1.72.0
+proto-plus==1.26.1
+
+# HTTP stack (safe versions)
+requests==2.25.1
+urllib3==1.26.5
+certifi==2020.6.20
+idna==2.10
+chardet==4.0.0
+
+cachecontrol==0.14.3
+pyjwt==2.10.1
