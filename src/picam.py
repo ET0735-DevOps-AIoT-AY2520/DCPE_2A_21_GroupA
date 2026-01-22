@@ -5,7 +5,7 @@ import cv2
 from time import sleep
 import sys
 import queue
-
+import nonfunc as mode
 barcode_queue = queue.Queue()
 
 def scanner_loop():
@@ -29,6 +29,8 @@ def scanner_loop():
         if len(barcodes) > 0:
             data = barcodes[0].data.decode("utf-8")
             print("Detected:", data)
+            mode.mode=1
+            mode.modecountdown=30
             barcode_queue.put(data)  # send barcode to main program
             sleep(2)  # small delay to avoid double reads
         sleep(0.1)
