@@ -1,6 +1,7 @@
 import threading as thread
 import time
 import db
+import logs
 modecountdown=30
 mode=1
 countdown=1
