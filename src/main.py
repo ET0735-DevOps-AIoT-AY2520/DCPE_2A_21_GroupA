@@ -69,6 +69,7 @@ def main():
     logs.newlog(0,"Start Keypad Thread")
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
+    logs.newlog(0,"Start non functional thread")
     mode_thread=Thread(target=mode.monitor)
     mode_thread.start()
     caminput="0"

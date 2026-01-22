@@ -18,6 +18,7 @@ def modeswitch():
     modecountdown=modecountdown-1
     if modecountdown==0:
         mode=0
+        logs.newlog(0,"Now in inactive mode")
         print("mode switched")
         
 

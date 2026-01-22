@@ -29,6 +29,7 @@ def scanner_loop():
         if len(barcodes) > 0:
             data = barcodes[0].data.decode("utf-8")
             print("Detected:", data)
+            logs.newlog(0,"Switched to Active mode")
             mode.mode=1
             mode.modecountdown=30
             barcode_queue.put(data)  # send barcode to main program
