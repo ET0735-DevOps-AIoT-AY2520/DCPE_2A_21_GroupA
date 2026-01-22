@@ -25,7 +25,7 @@ from hal import hal_temp_humidity_sensor as temp_humid_sensor
 from hal import hal_usonic as usonic
 from hal import hal_dc_motor as dc_motor
 from hal import hal_accelerometer as accel
-
+import nonfunc as mode
 
 
 
@@ -45,7 +45,6 @@ def key_pressed(key):
 def main():
     global currentkey
     currentkey="z"
-    print("test")
     logs.newlog(0,"Init LCD")
     lcd = LCD.lcd()
     lcd.lcd_clear()
@@ -62,9 +61,6 @@ def main():
     # Initialize the HAL keypad driver
     logs.newlog(0,"Init Keypad")
     keypad.init(key_pressed)
-    
-    
-
     #db autoscan
     logs.newlog(0,"Starting Reservation Timeout Thread")
     remres=Thread(target=db.reservationTimeout)
@@ -73,6 +69,9 @@ def main():
     logs.newlog(0,"Start Keypad Thread")
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
+    logs.newlog(0,"Start non functional thread")
+    mode_thread=Thread(target=mode.monitor)
+    mode_thread.start()
     caminput="0"
     while True:
         caminput=picam.barcode_queue.get()
