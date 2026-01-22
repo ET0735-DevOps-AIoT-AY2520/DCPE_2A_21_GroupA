@@ -6,6 +6,7 @@ from time import sleep
 import sys
 import queue
 import nonfunc as mode
+import logs
 barcode_queue = queue.Queue()
 
 def scanner_loop():
