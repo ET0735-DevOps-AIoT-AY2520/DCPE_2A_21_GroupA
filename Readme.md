@@ -59,6 +59,15 @@ Staff-related functions include:
 - Ensuring kiosk hardware is operational.
 - Overseeing fine collection and reservation cancellations
 
+## System Workflow
+
+1. User reserves a book online using the application.
+2. Reservation details are stored in Firebase.
+3. User visits the library and authenticates at the kiosk.
+4. The kiosk verifies eligibility and reservation status.
+5. The book is dispensed to the user.
+6. Returned books are scanned and recorded in the system.
+
 ## System Architecture
 
 The system consists of three main components:
