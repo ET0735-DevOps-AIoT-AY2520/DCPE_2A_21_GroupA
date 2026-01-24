@@ -104,16 +104,17 @@ They help staff identify issues such as scanning failures, payment errors, and u
 
 ## Non-Functional Requirements
 
-- **Database Cost Efficiency**
-  - The Raspberry Pi minimizes unnecessary database reads by operating in **Idle Mode** and **Active Mode**.
+### Database Cost Efficiency
 
-- **Reliability**
-  - Reservations not collected within the allowed time window are automatically cancelled.
-  - Borrow/return actions update the database to keep records consistent.
+The system minimizes unnecessary database reads by ensuring the Raspberry Pi
+only accesses the database when required.
 
-- **Maintainability**
-  - Logs are available to support debugging, error diagnosis, and kiosk maintenance.
+The system operates in two power modes:
+- **Idle Mode**: Routine database calls are stopped when there is no user interaction.
+- **Active Mode**: Database access resumes when user interaction is detected.
 
+This approach reduces unnecessary database usage and helps lower cloud
+infrastructure costs.
 ## Running the Website
 
 The website runs on a Raspberry Pi using Docker.
