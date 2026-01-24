@@ -37,6 +37,9 @@ At the physical kiosk, users can:
 3. Return books by scanning the ISBN barcode.
 4. Pay outstanding fines using the RFID card reader.
 
+![OIP](https://github.com/user-attachments/assets/adb02088-52cf-4c82-a85a-4a2042fd47f7)
+
+
 ## Borrowing Rules & Penalties
 
 The system enforces the following borrowing rules:
@@ -49,6 +52,9 @@ Penalty handling:
 - Reserved books not collected within **5 days** are automatically cancelled.
 - Users must clear all outstanding fines via RFID payment before collecting new books.
 
+![OIP](https://github.com/user-attachments/assets/d8bda44b-1e38-4056-b131-3780d6c041ac)
+
+
 ## For Library Staff / Admin
 
 Authorized staff are responsible for maintaining the system and library records.
@@ -59,6 +65,9 @@ Staff-related functions include:
 - Ensuring kiosk hardware is operational.
 - Overseeing fine collection and reservation cancellations
 
+![OIP](https://github.com/user-attachments/assets/50f6352e-60a8-426d-a0ff-ed1e4198d4fc)
+
+
 ## System Workflow
 
 1. User reserves a book online using the application.
@@ -67,6 +76,9 @@ Staff-related functions include:
 4. The kiosk verifies eligibility and reservation status.
 5. The book is dispensed to the user.
 6. Returned books are scanned and recorded in the system.
+
+![OIP](https://github.com/user-attachments/assets/017f53fe-8ba8-4ad0-b309-839017e152aa)
+
 
 ## System Architecture
 
