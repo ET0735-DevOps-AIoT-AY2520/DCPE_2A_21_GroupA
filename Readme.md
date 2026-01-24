@@ -66,6 +66,13 @@ Through the admin panel, staff can:
 3. View overall library data, including the number of books on loan, reserved, and available.
 4. Search users to view their borrowed and reserved books and outstanding fine amounts.
 5. View system logs for monitoring, troubleshooting, and error diagnosis.
+   
+To access the admin panel, enter the following in a browser:
+
+http://<Raspberry_Pi_IP_Address>:5000
+
+Requirements:
+- The staff device must be connected to the same WiFi network as the Raspberry Pi.
 
 
 ## System Workflow
