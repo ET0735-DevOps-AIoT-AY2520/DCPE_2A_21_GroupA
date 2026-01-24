@@ -57,14 +57,15 @@ Penalty handling:
 
 ## For Library Staff / Admin
 
-Authorized staff are responsible for maintaining the system and library records.
+The *Automatic Book Borrowing System* provides an admin panel for authorized staff
+to manage library data and monitor system operations.
 
-Staff-related functions include:
-- Managing book records and availability in the database.
-- Monitoring user borrowing and reservation activity.
-- Ensuring kiosk hardware is operational.
-- Overseeing fine collection and reservation cancellations
-
+Through the admin panel, staff can:
+1. Create, update (overwrite), and delete book records.
+2. Track individual book details such as loan status, reservation status, borrower ID, dates, and location.
+3. View overall library data, including the number of books on loan, reserved, and available.
+4. Search users to view their borrowed and reserved books and outstanding fine amounts.
+5. View system logs for monitoring, troubleshooting, and error diagnosis.
 ![OIP](https://github.com/user-attachments/assets/50f6352e-60a8-426d-a0ff-ed1e4198d4fc)
 
 
