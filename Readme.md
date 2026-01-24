@@ -49,6 +49,16 @@ Penalty handling:
 - Reserved books not collected within **5 days** are automatically cancelled.
 - Users must clear all outstanding fines via RFID payment before collecting new books.
 
+## For Library Staff / Admin
+
+Authorized staff are responsible for maintaining the system and library records.
+
+Staff-related functions include:
+- Managing book records and availability in the database.
+- Monitoring user borrowing and reservation activity.
+- Ensuring kiosk hardware is operational.
+- Overseeing fine collection and reservation cancellations
+
 ## Flutter app
 
 ## Firebase
