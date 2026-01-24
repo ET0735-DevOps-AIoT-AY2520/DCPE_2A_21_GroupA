@@ -118,14 +118,24 @@ infrastructure costs.
 ## Running the Website
 
 The website runs on a Raspberry Pi using Docker.
+A prebuilt Docker image is used for deployment.
 
 ```bash
-# Build the Docker image
-docker build -t auto-book-system.
+# Pull the Docker image
+docker pull poryusp/proj-img:latest
 
-
-# Run the container
-docker run -p 5000:5000 auto-book-system
+# Run the container on Raspberry Pi
+docker run -it --rm --name proj-test \
+  --privileged \
+  --network host \
+  -v /run/udev:/run/udev:ro \
+  -v /run/dbus:/run/dbus \
+  -v /dev:/dev \
+  --device /dev/i2c-1 \
+  --device /dev/spidev0.0 \
+  --device /dev/spidev0.1 \
+  -v "$PWD/serviceAccoutKey.json:/Project/serviceAccoutKey.json:ro" \
+  proj-img
 ```
 
 ## Flutter app
