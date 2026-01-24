@@ -77,6 +77,14 @@ between online reservations and physical book handling.
 
 ## Rasberry Pi
 
+The Raspberry Pi acts as a self-service kiosk located in the library.
+
+It supports:
+- User authentication via card scanning.
+- Book collection after eligibility checks.
+- Book return through barcode scanning.
+- Fine payment verification using RFID.
+- Automated dispensing using motors and hardware peripherals.
 ## Other Useful Infomation
 
 
