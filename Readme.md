@@ -115,11 +115,12 @@ The website runs on a Raspberry Pi using Docker.
 
 ```bash
 # Build the Docker image
-docker build -t auto-book-system .
+docker build -t auto-book-system.
+
 
 # Run the container
 docker run -p 5000:5000 auto-book-system
-
+```
 
 ## Flutter app
 
