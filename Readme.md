@@ -90,6 +90,18 @@ The system consists of three main components:
 These components communicate to ensure real-time synchronization
 between online reservations and physical book handling.
 
+## Non-Functional Requirements
+
+- **Database Cost Efficiency**
+  - The Raspberry Pi minimizes unnecessary database reads by operating in **Idle Mode** and **Active Mode**.
+
+- **Reliability**
+  - Reservations not collected within the allowed time window are automatically cancelled.
+  - Borrow/return actions update the database to keep records consistent.
+
+- **Maintainability**
+  - Logs are available to support debugging, error diagnosis, and kiosk maintenance.
+
 ## Running the Website
 
 The website runs on a Raspberry Pi using Docker.
