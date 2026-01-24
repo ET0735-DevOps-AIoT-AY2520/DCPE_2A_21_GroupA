@@ -90,6 +90,16 @@ The system consists of three main components:
 These components communicate to ensure real-time synchronization
 between online reservations and physical book handling.
 
+## Running the Website
+
+The website runs on a Raspberry Pi using Docker.
+
+```bash
+# Build the Docker image
+docker build -t auto-book-system .
+
+# Run the container
+docker run -p 5000:5000 auto-book-system
 
 
 ## Flutter app
