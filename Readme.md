@@ -73,7 +73,17 @@ between online reservations and physical book handling.
 
 ## Flutter app
 
+- User registration and login
+- Online book reservation
+- View borrowed and reserved books
+- Loan extension functionality
+
 ## Firebase
+
+- Store user authentication data
+- Store book and availability records
+- Track reservations, loans, and fines
+- Sync data between app and kiosk
 
 ## Rasberry Pi
 
@@ -85,7 +95,13 @@ It supports:
 - Book return through barcode scanning.
 - Fine payment verification using RFID.
 - Automated dispensing using motors and hardware peripherals.
+  
 ## Other Useful Infomation
+
+- Max 10 books per user
+- 18-day loan period
+- One-time 7-day extension
+- $0.15 fine per late day per book
 
 
 
