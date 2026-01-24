@@ -59,6 +59,18 @@ Staff-related functions include:
 - Ensuring kiosk hardware is operational.
 - Overseeing fine collection and reservation cancellations
 
+## System Architecture
+
+The system consists of three main components:
+1. A frontend application for users to reserve and manage books.
+2. A Firebase database that stores user profiles, book data, and loan records.
+3. A Raspberry Pi–based kiosk that handles book collection, returns, and fine payments.
+
+These components communicate to ensure real-time synchronization
+between online reservations and physical book handling.
+
+
+
 ## Flutter app
 
 ## Firebase
