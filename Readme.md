@@ -37,6 +37,18 @@ At the physical kiosk, users can:
 3. Return books by scanning the ISBN barcode.
 4. Pay outstanding fines using the RFID card reader.
 
+## Borrowing Rules & Penalties
+
+The system enforces the following borrowing rules:
+- A user may borrow a maximum of **10 books** at any time.
+- Each book has a standard loan period of **18 days**.
+- Each loan may be extended **once** for an additional **7 days**.
+
+Penalty handling:
+- Late returns incur a fine of **$0.15 per book per day**.
+- Reserved books not collected within **5 days** are automatically cancelled.
+- Users must clear all outstanding fines via RFID payment before collecting new books.
+
 ## Flutter app
 
 ## Firebase
