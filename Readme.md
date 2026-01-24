@@ -97,6 +97,11 @@ The system consists of three main components:
 These components communicate to ensure real-time synchronization
 between online reservations and physical book handling.
 
+## Logging & Diagnostics
+
+Raspberry Pi logs are available for error diagnosis and troubleshooting.
+They help staff identify issues such as scanning failures, payment errors, and unexpected system crashes.
+
 ## Non-Functional Requirements
 
 - **Database Cost Efficiency**
