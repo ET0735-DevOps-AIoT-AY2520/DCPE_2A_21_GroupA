@@ -26,10 +26,10 @@ def test_checkfines():
 def test_calculatefine():
     result=db.calculatefine(
     [
-        {"extended":True,"date":"2025-12-10"},
-        {"extended":False,"date":"2025-12-07"},
-        {"extended":True,"date":"2025-11-30"},
-        {"extended":False,"date":"2025-12-20"},
+        {"extended":True,"date":"2025-12-06"},
+        {"extended":False,"date":"2025-12-03"},
+        {"extended":True,"date":"2025-11-26"},
+        {"extended":False,"date":"2025-12-16"},
     ],
         datetime.datetime.strptime("2025-12-23", "%Y-%m-%d").date()
     )

@@ -131,9 +131,9 @@ def calculatefine(input,timenow):
     for book in input:
         reserved_date = datetime.datetime.strptime(book["date"], "%Y-%m-%d").date()
         if book["extended"]==True:
-            cutoff=(timenow - datetime.timedelta(days=21))
+            cutoff=(timenow - datetime.timedelta(days=18))
         else:
-            cutoff=(timenow - datetime.timedelta(days=14))
+            cutoff=(timenow - datetime.timedelta(days=25))
         if reserved_date<cutoff:
             totaldayslate+=(cutoff-reserved_date).days
     totalfine=totaldayslate*0.15
@@ -232,7 +232,7 @@ def upduserweb(id,delete,fine):
                         "fine":float(fine)
                     }
                 )
-                logs.newlog(2,"Updated profile "+str(profile.to_dict()["id"])+" by admin request")
+                logs.newlog(2,"Updated profile "+str(profile.to_dict()["adm"])+" by admin request")
 
 def createnewbook(id,title,locationcode):
     db.collection("books").add({
