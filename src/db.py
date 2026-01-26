@@ -232,7 +232,7 @@ def upduserweb(id,delete,fine):
                         "fine":float(fine)
                     }
                 )
-                logs.newlog(2,"Updated profile "+str(profile.to_dict()["id"])+" by admin request")
+                logs.newlog(2,"Updated profile "+str(profile.to_dict()["adm"])+" by admin request")
 
 def createnewbook(id,title,locationcode):
     db.collection("books").add({
