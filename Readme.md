@@ -83,6 +83,7 @@ Requirements:
 4. The kiosk verifies eligibility and reservation status.
 5. The book is dispensed to the user.
 6. Returned books are scanned and recorded in the system.
+<img width="572" height="689" alt="Screenshot 2026-01-26 140254" src="https://github.com/user-attachments/assets/011c83e7-f75d-47e6-a13b-52e0a72e329b" />
 
 
 
@@ -144,6 +145,8 @@ docker run -it --rm --name proj-test \
 - Online book reservation
 - View borrowed and reserved books
 - Loan extension functionality
+<img width="499" height="617" alt="Screenshot 2026-01-26 140245" src="https://github.com/user-attachments/assets/7bb43c60-f04d-4a4d-a7dc-77b2c31e9afd" />
+
 
 ## Firebase
 
@@ -153,6 +156,9 @@ docker run -it --rm --name proj-test \
 - Sync data between app and kiosk
 
 ## Rasberry Pi
+<img width="548" height="492" alt="Screenshot 2026-01-26 140346" src="https://github.com/user-attachments/assets/ece0e9a6-3e62-4b8f-8066-535d94cb94e0" />
+
+
 
 The Raspberry Pi acts as a self-service kiosk located in the library.
 
@@ -162,6 +168,8 @@ It supports:
 - Book return through barcode scanning.
 - Fine payment verification using RFID.
 - Automated dispensing using motors and hardware peripherals.
+  <img width="537" height="579" alt="Screenshot 2026-01-26 140229" src="https://github.com/user-attachments/assets/582f609a-1f65-4322-9ce1-0f2c56eec1cc" />
+
   
 ## Other Useful Infomation
 
