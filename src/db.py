@@ -131,9 +131,9 @@ def calculatefine(input,timenow):
     for book in input:
         reserved_date = datetime.datetime.strptime(book["date"], "%Y-%m-%d").date()
         if book["extended"]==True:
-            cutoff=(timenow - datetime.timedelta(days=18))
-        else:
             cutoff=(timenow - datetime.timedelta(days=25))
+        else:
+            cutoff=(timenow - datetime.timedelta(days=18))
         if reserved_date<cutoff:
             totaldayslate+=(cutoff-reserved_date).days
     totalfine=totaldayslate*0.15
