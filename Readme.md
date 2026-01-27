@@ -178,5 +178,8 @@ It supports:
 - One-time 7-day extension
 - $0.15 fine per late day per book
 
+## Other code repositories and Docker
 
+[App Github Repository](https://github.com/Por-Yu-SP/devops_app)<br>
+[Docker Hub Repository](https://hub.docker.com/repository/docker/poryusp/proj-img/general)
 
