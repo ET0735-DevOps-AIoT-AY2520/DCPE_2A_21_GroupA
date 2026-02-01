@@ -37,7 +37,11 @@ At the physical kiosk, users can:
 3. Return books by scanning the ISBN barcode.
 4. Pay outstanding fines using the RFID card reader.
 
+<<<<<<< HEAD
 ![OIP](https://github.com/user-attachments/assets/adb02088-52cf-4c82-a85a-4a2042fd47f7)
+=======
+
+>>>>>>> e239ad9a117c6e6088ba58872bf7f8678c18a074
 
 
 ## Borrowing Rules & Penalties
@@ -52,11 +56,16 @@ Penalty handling:
 - Reserved books not collected within **5 days** are automatically cancelled.
 - Users must clear all outstanding fines via RFID payment before collecting new books.
 
+<<<<<<< HEAD
 ![OIP](https://github.com/user-attachments/assets/d8bda44b-1e38-4056-b131-3780d6c041ac)
+=======
+
+>>>>>>> e239ad9a117c6e6088ba58872bf7f8678c18a074
 
 
 ## For Library Staff / Admin
 
+<<<<<<< HEAD
 Authorized staff are responsible for maintaining the system and library records.
 
 Staff-related functions include:
@@ -66,6 +75,24 @@ Staff-related functions include:
 - Overseeing fine collection and reservation cancellations
 
 ![OIP](https://github.com/user-attachments/assets/50f6352e-60a8-426d-a0ff-ed1e4198d4fc)
+=======
+The *Automatic Book Borrowing System* provides an admin panel for authorized staff
+to manage library data and monitor system operations.
+
+Through the admin panel, staff can:
+1. Create, update (overwrite), and delete book records.
+2. Track individual book details such as loan status, reservation status, borrower ID, dates, and location.
+3. View overall library data, including the number of books on loan, reserved, and available.
+4. Search users to view their borrowed and reserved books and outstanding fine amounts.
+5. View system logs for monitoring, troubleshooting, and error diagnosis.
+   
+To access the admin panel, enter the following in a browser:
+
+http://<Raspberry_Pi_IP_Address>:5000
+
+Requirements:
+- The staff device must be connected to the same WiFi network as the Raspberry Pi.
+>>>>>>> e239ad9a117c6e6088ba58872bf7f8678c18a074
 
 
 ## System Workflow
@@ -77,7 +104,11 @@ Staff-related functions include:
 5. The book is dispensed to the user.
 6. Returned books are scanned and recorded in the system.
 
+<<<<<<< HEAD
 ![OIP](https://github.com/user-attachments/assets/017f53fe-8ba8-4ad0-b309-839017e152aa)
+=======
+
+>>>>>>> e239ad9a117c6e6088ba58872bf7f8678c18a074
 
 
 ## System Architecture
@@ -90,7 +121,50 @@ The system consists of three main components:
 These components communicate to ensure real-time synchronization
 between online reservations and physical book handling.
 
+<<<<<<< HEAD
 
+=======
+## Logging & Diagnostics
+
+Raspberry Pi logs are available for error diagnosis and troubleshooting.
+They help staff identify issues such as scanning failures, payment errors, and unexpected system crashes.
+
+## Non-Functional Requirements
+
+### Database Cost Efficiency
+
+The system minimizes unnecessary database reads by ensuring the Raspberry Pi
+only accesses the database when required.
+
+The system operates in two power modes:
+- **Idle Mode**: Routine database calls are stopped when there is no user interaction.
+- **Active Mode**: Database access resumes when user interaction is detected.
+
+This approach reduces unnecessary database usage and helps lower cloud
+infrastructure costs.
+## Running the Website
+
+The website runs on a Raspberry Pi using Docker.
+A prebuilt Docker image is used for deployment.
+
+```bash
+# Pull the Docker image
+docker pull poryusp/proj-img:latest
+
+# Run the container on Raspberry Pi
+docker run -it --rm --name proj-test \
+  --privileged \
+  --network host \
+  -v /run/udev:/run/udev:ro \
+  -v /run/dbus:/run/dbus \
+  -v /dev:/dev \
+  --device /dev/i2c-1 \
+  --device /dev/spidev0.0 \
+  --device /dev/spidev0.1 \
+  -v "$PWD/serviceAccoutKey.json:/Project/serviceAccoutKey.json:ro" \
+  proj-img
+```
+>>>>>>> e239ad9a117c6e6088ba58872bf7f8678c18a074
 
 ## Flutter app
 
