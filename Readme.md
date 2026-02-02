@@ -136,7 +136,7 @@ docker run -it --rm --name proj-test \
   --device /dev/spidev0.0 \
   --device /dev/spidev0.1 \
   -v "$PWD/serviceAccoutKey.json:/Project/serviceAccoutKey.json:ro" \
-  proj-img
+  poryusp/proj-img
 ```
 
 ## Flutter app
