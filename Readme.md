@@ -183,3 +183,14 @@ It supports:
 [App Github Repository](https://github.com/Por-Yu-SP/devops_app)<br>
 [Docker Hub Repository](https://hub.docker.com/repository/docker/poryusp/proj-img/general)
 
+
+## Contributions 
+
+| Name     | Contributions |
+|----------|---------------|
+| **Srikar** | - README<br>- Buzzer<br>- LED<br>- SRS document<br>- LCD display<br>- Associated system test cases<br>- Generated presentation plan<br>- Research on required packages and potential improvements<br>- Cameraman for demo video |
+| **Vrishank** | - All RFID functionality<br>- General bug fixes<br>- SRS document<br>- Hardware testing<br>- Brainstorming<br>- General support<br>- Associated system test cases |
+| **Thiha** | - Flask server<br>- HTML<br>- All JavaScript code<br>- Data transfer between HTML and `app.py` (both directions)<br>- CSS<br>- Humidity sensor<br>- Servo motor<br>- Related unit tests<br>- Associated system test cases<br>- All SRS graphs<br>- General support<br>- Various related bug fixes |
+| **Por Yu** | - Overall code flow and structure<br>- All database functionality<br>- Related unit tests<br>- PiCamera and associated functions<br>- Raspberry Pi log creation<br>- Non-functional requirements<br>- Automatic reservation clearing<br>- Partial LCD implementation<br>- Threading-related components<br>- Bug fixes<br>- Dockerfile creation<br>- Container build<br>- Docker Hub maintenance<br>- All application functionality<br>- SRS document<br>- GitHub upkeep |
+
+
